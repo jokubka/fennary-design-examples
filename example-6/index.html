@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FENNARY — Namų kvapai</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500;600;700&display=swap&subset=lithuanian" rel="stylesheet" />
+  <style>
+    /* ============ FENNARY design tokens (maps to theme.json / :root in WooCommerce theme) ============ */
+    :root{
+      --color-ivory:#F4F0E8;
+      --color-soft-white:#FBFAF7;
+      --color-stone:#DED8CD;
+      --color-charcoal:#24211E;
+      --color-taupe:#746E67;
+      --color-champagne:#B49A72;
+      --color-room-one:#899286;
+      --color-room-two:#88604C;
+      --color-line:rgba(36,33,30,.14);
+      --shadow-soft:0 24px 60px rgba(36,33,30,.09);
+      --shadow-hover:0 10px 24px rgba(36,33,30,.14);
+      --transition:250ms ease;
+      --container-max:1180px;
+      --radius-small:2px;
+      --radius-medium:4px;
+      --font-display:"Cormorant Garamond", Georgia, serif;
+      --font-body:"Inter", Arial, Helvetica, sans-serif;
+    }
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--color-ivory);color:var(--color-charcoal);font-family:var(--font-body);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+    a{color:var(--color-charcoal);text-decoration:none}
+    a:hover{color:var(--color-taupe)}
+    :focus-visible{outline:1.5px solid var(--color-charcoal);outline-offset:3px}
+    /* Responsive switches that cannot be expressed inline */
+    @media (max-width:900px){
+      [data-mq="nav-desktop"]{display:none !important}
+      [data-mq="utils-desktop"]{display:none !important}
+      [data-mq="menu-mobile"]{display:inline-flex !important}
+      [data-mq="duet-divider"]{display:none !important}
+    }
+    @media (max-width:620px){
+      [data-mq="hero-copy"]{text-align:center !important;align-items:center !important}
+    }
+    @media (prefers-reduced-motion: reduce){
+      html{scroll-behavior:auto}
+      *{transition-duration:.01ms !important;animation-duration:.01ms !important}
+    }
+  </style>
+</helmet>
+
+<!-- ================================================================
+     wc: header.php — announcement bar (site-wide notice)
+     ================================================================ -->
+<sc-if value="{{ showAnnouncement }}" hint-placeholder-val="{{ true }}">
+  <div role="region" aria-label="Pranešimas" style="background:var(--color-charcoal);color:var(--color-ivory);text-align:center;font-size:10px;letter-spacing:.22em;text-transform:uppercase;padding:11px 14px;font-weight:500">Nemokamas pristatymas Lietuvoje nuo 60 €</div>
+</sc-if>
+
+<!-- ================================================================
+     wc: header.php — sticky site header (transparent over hero)
+     ================================================================ -->
+<header data-header="true" style="position:sticky;top:0;z-index:60;background:transparent;border-bottom:1px solid var(--color-line);padding-block:18px;transition:background 250ms ease, padding 250ms ease, backdrop-filter 250ms ease">
+  <div style="max-width:var(--container-max);margin-inline:auto;padding-inline:clamp(14px,3vw,20px);display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:16px;min-height:40px">
+    <!-- primary nav (desktop) -->
+    <nav aria-label="Pagrindinė navigacija" data-mq="nav-desktop" style="display:flex;gap:28px;align-items:center">
+      <a href="#kvapai" style="font-size:13px;letter-spacing:.04em;padding-bottom:3px;background-image:linear-gradient(currentColor,currentColor);background-repeat:no-repeat;background-size:0% 1px;background-position:left bottom;transition:background-size 250ms ease,color 250ms ease" style-hover="background-size:100% 1px">Kvapai</a>
+      <a href="#apie" style="font-size:13px;letter-spacing:.04em;padding-bottom:3px;background-image:linear-gradient(currentColor,currentColor);background-repeat:no-repeat;background-size:0% 1px;background-position:left bottom;transition:background-size 250ms ease,color 250ms ease" style-hover="background-size:100% 1px">Apie FENNARY</a>
+      <a href="#gidas" style="font-size:13px;letter-spacing:.04em;padding-bottom:3px;background-image:linear-gradient(currentColor,currentColor);background-repeat:no-repeat;background-size:0% 1px;background-position:left bottom;transition:background-size 250ms ease,color 250ms ease" style-hover="background-size:100% 1px">Kvapų gidas</a>
+      <a href="#kontaktai" style="font-size:13px;letter-spacing:.04em;padding-bottom:3px;background-image:linear-gradient(currentColor,currentColor);background-repeat:no-repeat;background-size:0% 1px;background-position:left bottom;transition:background-size 250ms ease,color 250ms ease" style-hover="background-size:100% 1px">Kontaktai</a>
+    </nav>
+    <!-- mobile menu trigger -->
+    <button type="button" aria-label="Meniu" data-mq="menu-mobile" style="display:none;grid-column:1;grid-row:1;justify-self:start;background:none;border:none;cursor:pointer;padding:8px;flex-direction:column;gap:5px;min-width:44px;min-height:44px;justify-content:center;align-items:center">
+      <span style="display:block;width:20px;height:1px;background:var(--color-charcoal)"></span>
+      <span style="display:block;width:20px;height:1px;background:var(--color-charcoal)"></span>
+    </button>
+    <!-- centered wordmark -->
+    <a href="#" aria-label="FENNARY — pradžia" style="grid-column:2;font-family:var(--font-display);font-size:22px;font-weight:500;letter-spacing:.42em;text-indent:.42em;white-space:nowrap">FENNARY</a>
+    <!-- utilities -->
+    <div style="grid-column:3;display:flex;gap:22px;align-items:center;justify-content:flex-end">
+      <div data-mq="utils-desktop" style="display:flex;gap:22px;align-items:center">
+        <button type="button" style="background:none;border:none;cursor:pointer;font-family:var(--font-body);font-size:13px;letter-spacing:.06em;color:var(--color-charcoal);padding:6px 2px" style-hover="color:var(--color-taupe)">LT</button>
+        <button type="button" aria-label="Paieška" style="background:none;border:none;cursor:pointer;font-family:var(--font-body);font-size:13px;letter-spacing:.04em;color:var(--color-charcoal);padding:6px 2px" style-hover="color:var(--color-taupe)">Paieška</button>
+      </div>
+      <a href="#" aria-label="Krepšelis, 0 prekių" style="display:inline-flex;gap:8px;align-items:center;font-size:13px;letter-spacing:.04em">
+        <span>Krepšelis</span>
+        <span aria-hidden="true" style="display:inline-flex;align-items:center;justify-content:center;min-width:20px;height:20px;border:1px solid var(--color-charcoal);border-radius:999px;font-size:10px;font-weight:600">0</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <!-- ================================================================
+       wc: front-page.php — section: hero
+       ================================================================ -->
+  <section aria-labelledby="hero-heading" data-screen-label="Hero" style="margin-top:-79px;padding-top:79px;background:radial-gradient(circle at 76% 34%, rgba(255,255,255,.5), transparent 28%), linear-gradient(118deg,#eee8de 0%,#f6f2eb 52%,#d9d1c6 100%)">
+    <div style="max-width:var(--container-max);margin-inline:auto;padding-inline:clamp(14px,3vw,20px);min-height:min(740px,92vh);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));align-items:center;gap:clamp(32px,5vw,64px);padding-block:clamp(56px,8vw,96px)">
+      <div data-mq="hero-copy" data-reveal="true" style="display:flex;flex-direction:column;align-items:flex-start;gap:26px;max-width:560px">
+        <p style="margin:0;font-size:11px;font-weight:600;letter-spacing:.28em;text-transform:uppercase;color:var(--color-taupe)">Namų kvapų kolekcija</p>
+        <h1 id="hero-heading" style="margin:0;font-family:var(--font-display);font-weight:400;font-size:clamp(44px,6.5vw,88px);line-height:1.05;letter-spacing:-0.015em;text-wrap:balance">Du kvapai. Dvi namų nuotaikos.</h1>
+        <p style="margin:0;font-size:clamp(16px,1.5vw,18px);line-height:1.6;color:var(--color-taupe);max-width:480px">Subtiliai sukurti namų kvapai, papildantys erdvę ramybe, charakteriu ir jaukumu.</p>
+        <div style="display:flex;gap:14px;flex-wrap:wrap;align-items:center;margin-top:6px">
+          <a href="#kvapai" style="display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding-inline:24px;background:var(--color-charcoal);color:var(--color-ivory);border:1px solid var(--color-charcoal);border-radius:var(--radius-small);font-size:12px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;transition:transform 250ms ease,box-shadow 250ms ease" style-hover="transform:translateY(-2px);box-shadow:var(--shadow-hover);color:var(--color-ivory)">Atrasti kvapą</a>
+          <a href="#apie" style="display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding-inline:24px;background:transparent;color:var(--color-charcoal);border:1px solid var(--color-charcoal);border-radius:var(--radius-small);font-size:12px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;transition:background 250ms ease" style-hover="background:rgba(36,33,30,.06);color:var(--color-charcoal)">Susipažinti</a>
+        </div>
+      </div>
+      <!-- hero product image placeholder -->
+      <div data-reveal="true" style="display:flex;justify-content:center;align-items:flex-end;min-height:clamp(380px,44vw,540px)">
+        <div role="img" aria-label="Skulptūriškas FENNARY difuzoriaus buteliukas su lazdelėmis, difuzinė šviesa, neutralus fonas" style="width:min(320px,72%);aspect-ratio:3/4.6;border-radius:var(--radius-medium);border:1px solid var(--color-line);background:repeating-linear-gradient(-45deg,rgba(36,33,30,.045) 0 1px,transparent 1px 9px),linear-gradient(160deg,#efe9df 0%,#e3dbcf 100%);box-shadow:var(--shadow-soft);display:flex;align-items:center;justify-content:center;transition:transform 300ms ease" style-hover="transform:scale(1.02)">
+          <span style="font-family:ui-monospace,Menlo,monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--color-taupe);text-align:center;padding:0 20px;line-height:1.8">produkto nuotrauka —<br />skulptūriškas buteliukas</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       wc: front-page.php — section: brand story (short intro)
+       ================================================================ -->
+  <section id="apie" aria-labelledby="story-heading" data-screen-label="Brand story" style="background:var(--color-soft-white);padding-block:clamp(72px,9vw,120px)">
+    <div data-reveal="true" style="max-width:640px;margin-inline:auto;padding-inline:clamp(14px,3vw,20px);text-align:center;display:flex;flex-direction:column;gap:22px;align-items:center">
+      <h2 id="story-heading" style="margin:0;font-size:11px;font-weight:600;letter-spacing:.28em;text-transform:uppercase;color:var(--color-taupe)">Apie FENNARY</h2>
+      <div aria-hidden="true" style="width:40px;height:1px;background:var(--color-champagne)"></div>
+      <p style="margin:0;font-family:var(--font-display);font-size:clamp(21px,2.4vw,27px);line-height:1.5;font-weight:400">FENNARY gimė iš paprasto noro — kad namuose būtų gera būti. Kiekvienas difuzorius kuriamas nedideliais kiekiais, naudojant kruopščiai atrinktas kvapų kompozicijas, kurios lėtai ir tolygiai pripildo erdvę. Be dūmų, be liepsnos — tik tyras, harmoningas aromatas.</p>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       wc: front-page.php — section: product story ROOM NO. 1
+       (repeatable unit; duplicate <article> for future products)
+       ================================================================ -->
+  <section id="kvapai" aria-label="Kvapai" data-screen-label="Room No. 1" style="background:var(--color-soft-white);padding-block:clamp(36px,5vw,60px)">
+    <article data-reveal="true" style="max-width:var(--container-max);margin-inline:auto;padding-inline:clamp(14px,3vw,20px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,440px),1fr));gap:clamp(32px,5vw,72px);align-items:center">
+      <!-- product visual — image LEFT -->
+      <div role="img" aria-label="Room No. 1 difuzorius šviesioje erdvėje, vėsi dienos šviesa, švelnus šalavijo atspalvis" style="min-height:clamp(420px,42vw,560px);border-radius:var(--radius-medium);border:1px solid var(--color-line);background:repeating-linear-gradient(-45deg,rgba(137,146,134,.08) 0 1px,transparent 1px 9px),linear-gradient(165deg,#e9ece6 0%,#d3d9d0 60%,#c5ccc2 100%);display:flex;align-items:center;justify-content:center;transition:transform 300ms ease" style-hover="transform:scale(1.015)">
+        <span style="font-family:ui-monospace,Menlo,monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--color-taupe);text-align:center;line-height:1.8;padding:0 20px">produkto nuotrauka —<br />Room No. 1, dienos šviesa</span>
+      </div>
+      <!-- product story -->
+      <div style="display:flex;flex-direction:column;gap:18px;align-items:flex-start;max-width:520px">
+        <p style="margin:0;font-size:11px;font-weight:600;letter-spacing:.28em;text-transform:uppercase;color:var(--color-room-one)">Room No. 1</p>
+        <h3 style="margin:0;font-family:var(--font-display);font-weight:400;font-size:clamp(30px,3.4vw,42px);line-height:1.1">Fresh &amp; Pure</h3>
+        <p style="margin:0;font-family:var(--font-display);font-style:italic;font-size:clamp(20px,1.8vw,22px);color:var(--color-taupe)">Gaivus ir tyras</p>
+        <p style="margin:0;font-size:10.5px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--color-taupe)">Gaivus · Tyras · Harmoningas</p>
+        <div aria-hidden="true" style="width:100%;height:1px;background:var(--color-line)"></div>
+        <p style="margin:0;font-size:16px;line-height:1.6;color:var(--color-charcoal);max-width:480px">Gaivus, švarus ir lengvai elegantiškas namų kvapas — bergamotės ir baltojo šalavijo gaiva, jazmino ir rožės širdis, šiltas pušies bei ambros pagrindas.</p>
+        <ul style="list-style:none;margin:4px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:10px">
+          <li style="border:1px solid var(--color-room-one);border-radius:var(--radius-small);padding:8px 14px;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--color-charcoal)">Bergamotė</li>
+          <li style="border:1px solid var(--color-room-one);border-radius:var(--radius-small);padding:8px 14px;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--color-charcoal)">Baltasis šalavijas</li>
+          <li style="border:1px solid var(--color-room-one);border-radius:var(--radius-small);padding:8px 14px;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--color-charcoal)">Jazminas</li>
+          <li style="border:1px solid var(--color-room-one);border-radius:var(--radius-small);padding:8px 14px;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--color-charcoal)">Ambra</li>
+        </ul>
+        <a href="#" style="margin-top:10px;display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding-inline:24px;background:var(--color-charcoal);color:var(--color-ivory);border:1px solid var(--color-charcoal);border-radius:var(--radius-small);font-size:12px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;transition:transform 250ms ease,box-shadow 250ms ease" style-hover="transform:translateY(-2px);box-shadow:var(--shadow-hover);color:var(--color-ivory)">Pasirinkti Room No. 1</a>
+      </div>
+    </article>
+  </section>
+
+  <!-- ================================================================
+       wc: front-page.php — section: product story ROOM NO. 2 (reversed)
+       ================================================================ -->
+  <section aria-label="Room No. 2" data-screen-label="Room No. 2" style="background:var(--color-soft-white);padding-block:clamp(36px,5vw,60px) clamp(72px,9vw,120px)">
+    <article data-reveal="true" style="max-width:var(--container-max);margin-inline:auto;padding-inline:clamp(14px,3vw,20px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,440px),1fr));gap:clamp(32px,5vw,72px);align-items:center">
+      <!-- product story — text LEFT -->
+      <div style="display:flex;flex-direction:column;gap:18px;align-items:flex-start;max-width:520px">
+        <p style="margin:0;font-size:11px;font-weight:600;letter-spacing:.28em;text-transform:uppercase;color:var(--color-room-two)">Room No. 2</p>
+        <h3 style="margin:0;font-family:var(--font-display);font-weight:400;font-size:clamp(30px,3.4vw,42px);line-height:1.1">Aromatic Oriental</h3>
+        <p style="margin:0;font-family:var(--font-display);font-style:italic;font-size:clamp(20px,1.8vw,22px);color:var(--color-taupe)">Aromatingas ir šiltas</p>
+        <p style="margin:0;font-size:10.5px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--color-taupe)">Aromatingas · Šiltas · Jaukus</p>
+        <div aria-hidden="true" style="width:100%;height:1px;background:var(--color-line)"></div>
+        <p style="margin:0;font-size:16px;line-height:1.6;color:var(--color-charcoal);max-width:480px">Aromatingas ir rytietiškai šiltas namų kvapas — žvaigždinio anyžiaus ir levandos natos, kreminė vanilė, gili tonka pupelių ir muskuso bazė.</p>
+        <ul style="list-style:none;margin:4px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:10px">
+          <li style="border:1px solid var(--color-room-two);border-radius:var(--radius-small);padding:8px 14px;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--color-charcoal)">Žvaigždinis anyžius</li>
+          <li style="border:1px solid var(--color-room-two);border-radius:var(--radius-small);padding:8px 14px;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--color-charcoal)">Levanda</li>
+          <li style="border:1px solid var(--color-room-two);border-radius:var(--radius-small);padding:8px 14px;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--color-charcoal)">Vanilė</li>
+          <li style="border:1px solid var(--color-room-two);border-radius:var(--radius-small);padding:8px 14px;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--color-charcoal)">Tonka pupelės</li>
+        </ul>
+        <a href="#" style="margin-top:10px;display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding-inline:24px;background:var(--color-charcoal);color:var(--color-ivory);border:1px solid var(--color-charcoal);border-radius:var(--radius-small);font-size:12px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;transition:transform 250ms ease,box-shadow 250ms ease" style-hover="transform:translateY(-2px);box-shadow:var(--shadow-hover);color:var(--color-ivory)">Pasirinkti Room No. 2</a>
+      </div>
+      <!-- product visual — image RIGHT -->
+      <div role="img" aria-label="Room No. 2 difuzorius jaukioje vakaro šviesoje, šiltas gintarinis atspalvis" style="min-height:clamp(420px,42vw,560px);border-radius:var(--radius-medium);border:1px solid var(--color-line);background:repeating-linear-gradient(-45deg,rgba(136,96,76,.08) 0 1px,transparent 1px 9px),linear-gradient(165deg,#e4d6cb 0%,#cbb2a0 60%,#b39481 100%);display:flex;align-items:center;justify-content:center;transition:transform 300ms ease" style-hover="transform:scale(1.015)">
+        <span style="font-family:ui-monospace,Menlo,monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#5f4636;text-align:center;line-height:1.8;padding:0 20px">produkto nuotrauka —<br />Room No. 2, vakaro šviesa</span>
+      </div>
+    </article>
+  </section>
+
+  <!-- ================================================================
+       wc: front-page.php — section: comparison table
+       ================================================================ -->
+  <section id="gidas" aria-labelledby="compare-heading" data-screen-label="Palyginimas" style="background:var(--color-ivory);padding-block:clamp(72px,9vw,120px)">
+    <div style="max-width:var(--container-max);margin-inline:auto;padding-inline:clamp(14px,3vw,20px);display:flex;flex-direction:column;gap:clamp(36px,4vw,56px)">
+      <h2 id="compare-heading" data-reveal="true" style="margin:0;font-family:var(--font-display);font-weight:400;font-size:clamp(36px,4.6vw,60px);line-height:1.1;text-align:center">Kas jums artimesnė?</h2>
+      <!-- variant A: klasikinė lentelė -->
+      <sc-if value="{{ compareTable }}" hint-placeholder-val="{{ true }}">
+      <div data-reveal="true" style="overflow-x:auto;-webkit-overflow-scrolling:touch">
+        <table style="width:100%;min-width:680px;border-collapse:collapse;background:var(--color-soft-white);border:1px solid var(--color-line)">
+          <thead>
+            <tr>
+              <th scope="col" style="text-align:left;padding:28px 26px;border-bottom:1px solid var(--color-line);border-right:1px solid var(--color-line);font-size:10.5px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--color-taupe);width:22%">Savybė</th>
+              <th scope="col" style="text-align:left;padding:28px 26px;border-bottom:1px solid var(--color-line);border-right:1px solid var(--color-line)">
+                <span style="display:inline-flex;align-items:center;gap:12px">
+                  <span aria-hidden="true" style="width:9px;height:9px;border-radius:999px;background:var(--color-room-one)"></span>
+                  <span style="font-family:var(--font-display);font-weight:400;font-size:clamp(22px,2vw,27px)">Room No. 1</span>
+                </span>
+              </th>
+              <th scope="col" style="text-align:left;padding:28px 26px;border-bottom:1px solid var(--color-line)">
+                <span style="display:inline-flex;align-items:center;gap:12px">
+                  <span aria-hidden="true" style="width:9px;height:9px;border-radius:999px;background:var(--color-room-two)"></span>
+                  <span style="font-family:var(--font-display);font-weight:400;font-size:clamp(22px,2vw,27px)">Room No. 2</span>
+                </span>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row" style="text-align:left;padding:22px 26px;border-bottom:1px solid var(--color-line);border-right:1px solid var(--color-line);font-size:10.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--color-taupe)">Pojūtis</th>
+              <td style="padding:22px 26px;border-bottom:1px solid var(--color-line);border-right:1px solid var(--color-line);font-size:15px;line-height:1.6">Gaivus, tyras</td>
+              <td style="padding:22px 26px;border-bottom:1px solid var(--color-line);font-size:15px;line-height:1.6">Šiltas, apgaubiantis</td>
+            </tr>
+            <tr>
+              <th scope="row" style="text-align:left;padding:22px 26px;border-bottom:1px solid var(--color-line);border-right:1px solid var(--color-line);font-size:10.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--color-taupe)">Kvapo kryptis</th>
+              <td style="padding:22px 26px;border-bottom:1px solid var(--color-line);border-right:1px solid var(--color-line);font-size:15px;line-height:1.6">Gėliškas, žemiškas</td>
+              <td style="padding:22px 26px;border-bottom:1px solid var(--color-line);font-size:15px;line-height:1.6">Aromatingas, rytietiškas</td>
+            </tr>
+            <tr>
+              <th scope="row" style="text-align:left;padding:22px 26px;border-bottom:1px solid var(--color-line);border-right:1px solid var(--color-line);font-size:10.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--color-taupe)">Geriausia erdvė</th>
+              <td style="padding:22px 26px;border-bottom:1px solid var(--color-line);border-right:1px solid var(--color-line);font-size:15px;line-height:1.6">Vonia, darbo erdvė, svetainė</td>
+              <td style="padding:22px 26px;border-bottom:1px solid var(--color-line);font-size:15px;line-height:1.6">Miegamasis, poilsio zona, svetainė</td>
+            </tr>
+            <tr>
+              <th scope="row" style="text-align:left;padding:22px 26px;border-bottom:1px solid var(--color-line);border-right:1px solid var(--color-line);font-size:10.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--color-taupe)">Nuotaika</th>
+              <td style="padding:22px 26px;border-bottom:1px solid var(--color-line);border-right:1px solid var(--color-line);font-size:15px;line-height:1.6">Šviesi, rami</td>
+              <td style="padding:22px 26px;border-bottom:1px solid var(--color-line);font-size:15px;line-height:1.6">Jauki, intymi</td>
+            </tr>
+            <tr>
+              <th scope="row" style="text-align:left;padding:22px 26px;border-right:1px solid var(--color-line);font-size:10.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--color-taupe)">Pagrindinės natos</th>
+              <td style="padding:22px 26px;border-right:1px solid var(--color-line);font-size:15px;line-height:1.6">Bergamotė, jazminas, ambra</td>
+              <td style="padding:22px 26px;font-size:15px;line-height:1.6">Anyžius, vanilė, tonka</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      </sc-if>
+
+      <!-- variant B: dviejų panelių duetas -->
+      <sc-if value="{{ compareDuet }}" hint-placeholder-val="{{ false }}">
+      <div data-reveal="true" style="position:relative;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:24px;align-items:stretch">
+        <article style="background:var(--color-soft-white);border:1px solid var(--color-line);border-radius:var(--radius-medium);overflow:hidden;display:flex;flex-direction:column;transition:transform 250ms ease, box-shadow 250ms ease" style-hover="transform:translateY(-4px);box-shadow:var(--shadow-hover)">
+          <div aria-hidden="true" style="height:6px;background:linear-gradient(90deg,var(--color-room-one),rgba(137,146,134,.35))"></div>
+          <div style="padding:clamp(28px,3.5vw,44px);display:flex;flex-direction:column;flex:1">
+            <p style="margin:0 0 6px;font-size:10.5px;font-weight:600;letter-spacing:.26em;text-transform:uppercase;color:var(--color-room-one)">Room No. 1</p>
+            <h3 style="margin:0 0 8px;font-family:var(--font-display);font-weight:400;font-size:clamp(28px,3vw,34px)">Fresh &amp; Pure</h3>
+            <p style="margin:0 0 30px;font-family:var(--font-display);font-style:italic;font-size:19px;color:var(--color-taupe)">Gaivus ir tyras</p>
+            <div style="display:flex;flex-direction:column">
+              <div style="display:flex;justify-content:space-between;gap:24px;padding:16px 0;border-top:1px solid var(--color-line)"><span style="font-size:10.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--color-taupe);padding-top:3px">Pojūtis</span><span style="font-family:var(--font-display);font-size:20px;text-align:right">Gaivus, tyras</span></div>
+              <div style="display:flex;justify-content:space-between;gap:24px;padding:16px 0;border-top:1px solid var(--color-line)"><span style="font-size:10.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--color-taupe);padding-top:3px">Kryptis</span><span style="font-family:var(--font-display);font-size:20px;text-align:right">Gėliškas, žemiškas</span></div>
+              <div style="display:flex;justify-content:space-between;gap:24px;padding:16px 0;border-top:1px solid var(--color-line)"><span style="font-size:10.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--color-taupe);padding-top:3px">Erdvė</span><span style="font-family:var(--font-display);font-size:20px;text-align:right">Vonia, darbo erdvė, svetainė</span></div>
+              <div style="display:flex;justify-content:space-between;gap:24px;padding:16px 0;border-top:1px solid var(--color-line)"><span style="font-size:10.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--color-taupe);padding-top:3px">Nuotaika</span><span style="font-family:var(--font-display);font-size:20px;text-align:right">Šviesi, rami</span></div>
+              <div style="display:flex;justify-content:space-between;gap:24px;padding:16px 0;border-top:1px solid var(--color-line)"><span style="font-size:10.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--color-taupe);padding-top:3px">Natos</span><span style="font-family:var(--font-display);font-size:20px;text-align:right">Bergamotė, jazminas, ambra</span></div>
+            </div>
+            <a href="#" style="margin-top:auto;padding-top:28px;align-self:flex-start;display:inline-flex;align-items:center;gap:10px;font-size:12px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;border-bottom:1px solid var(--color-charcoal);padding-bottom:6px" style-hover="color:var(--color-room-one)">Pasirinkti Room No. 1 →</a>
+          </div>
+        </article>
+        <div aria-hidden="true" data-mq="duet-divider" style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:2;width:52px;height:52px;border-radius:999px;background:var(--color-ivory);border:1px solid var(--color-champagne);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-style:italic;font-size:19px;color:var(--color-champagne)">ar</div>
+        <article style="background:var(--color-soft-white);border:1px solid var(--color-line);border-radius:var(--radius-medium);overflow:hidden;display:flex;flex-direction:column;transition:transform 250ms ease, box-shadow 250ms ease" style-hover="transform:translateY(-4px);box-shadow:var(--shadow-hover)">
+          <div aria-hidden="true" style="height:6px;background:linear-gradient(90deg,var(--color-room-two),rgba(136,96,76,.35))"></div>
+          <div style="padding:clamp(28px,3.5vw,44px);display:flex;flex-direction:column;flex:1">
+            <p style="margin:0 0 6px;font-size:10.5px;font-weight:600;letter-spacing:.26em;text-transform:uppercase;color:var(--color-room-two)">Room No. 2</p>
+            <h3 style="margin:0 0 8px;font-family:var(--font-display);font-weight:400;font-size:clamp(28px,3vw,34px)">Aromatic Oriental</h3>
+            <p style="margin:0 0 30px;font-family:var(--font-display);font-style:italic;font-size:19px;color:var(--color-taupe)">Aromatingas ir šiltas</p>
+            <div style="display:flex;flex-direction:column">
+              <div style="display:flex;justify-content:space-between;gap:24px;padding:16px 0;border-top:1px solid var(--color-line)"><span style="font-size:10.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--color-taupe);padding-top:3px">Pojūtis</span><span style="font-family:var(--font-display);font-size:20px;text-align:right">Šiltas, apgaubiantis</span></div>
+              <div style="display:flex;justify-content:space-between;gap:24px;padding:16px 0;border-top:1px solid var(--color-line)"><span style="font-size:10.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--color-taupe);padding-top:3px">Kryptis</span><span style="font-family:var(--font-display);font-size:20px;text-align:right">Aromatingas, rytietiškas</span></div>
+              <div style="display:flex;justify-content:space-between;gap:24px;padding:16px 0;border-top:1px solid var(--color-line)"><span style="font-size:10.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--color-taupe);padding-top:3px">Erdvė</span><span style="font-family:var(--font-display);font-size:20px;text-align:right">Miegamasis, poilsio zona, svetainė</span></div>
+              <div style="display:flex;justify-content:space-between;gap:24px;padding:16px 0;border-top:1px solid var(--color-line)"><span style="font-size:10.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--color-taupe);padding-top:3px">Nuotaika</span><span style="font-family:var(--font-display);font-size:20px;text-align:right">Jauki, intymi</span></div>
+              <div style="display:flex;justify-content:space-between;gap:24px;padding:16px 0;border-top:1px solid var(--color-line)"><span style="font-size:10.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--color-taupe);padding-top:3px">Natos</span><span style="font-family:var(--font-display);font-size:20px;text-align:right">Anyžius, vanilė, tonka</span></div>
+            </div>
+            <a href="#" style="margin-top:auto;padding-top:28px;align-self:flex-start;display:inline-flex;align-items:center;gap:10px;font-size:12px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;border-bottom:1px solid var(--color-charcoal);padding-bottom:6px" style-hover="color:var(--color-room-two)">Pasirinkti Room No. 2 →</a>
+          </div>
+        </article>
+      </div>
+      </sc-if>
+
+      <!-- variant C: redakcinis sąrašas -->
+      <sc-if value="{{ compareLedger }}" hint-placeholder-val="{{ false }}">
+      <div data-reveal="true" style="overflow-x:auto;-webkit-overflow-scrolling:touch">
+        <div style="min-width:680px;display:flex;flex-direction:column">
+          <div style="display:grid;grid-template-columns:1fr 160px 1fr;gap:32px;align-items:end;padding-bottom:28px;border-bottom:1px solid var(--color-charcoal)">
+            <div style="display:flex;flex-direction:column;gap:6px;align-items:flex-end;text-align:right">
+              <span style="display:inline-flex;align-items:center;gap:10px"><span style="font-family:var(--font-display);font-size:clamp(26px,2.6vw,32px)">Room No. 1</span><span aria-hidden="true" style="width:10px;height:10px;border-radius:999px;background:var(--color-room-one)"></span></span>
+              <span style="font-family:var(--font-display);font-style:italic;font-size:17px;color:var(--color-taupe)">Gaivus ir tyras</span>
+            </div>
+            <div></div>
+            <div style="display:flex;flex-direction:column;gap:6px;align-items:flex-start">
+              <span style="display:inline-flex;align-items:center;gap:10px"><span aria-hidden="true" style="width:10px;height:10px;border-radius:999px;background:var(--color-room-two)"></span><span style="font-family:var(--font-display);font-size:clamp(26px,2.6vw,32px)">Room No. 2</span></span>
+              <span style="font-family:var(--font-display);font-style:italic;font-size:17px;color:var(--color-taupe)">Aromatingas ir šiltas</span>
+            </div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 160px 1fr;gap:32px;align-items:center;padding:26px 0;border-bottom:1px solid var(--color-line);transition:background 250ms ease" style-hover="background:rgba(36,33,30,.025)">
+            <p style="margin:0;font-family:var(--font-display);font-size:22px;text-align:right">Gaivus, tyras</p>
+            <p style="margin:0;font-size:10.5px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--color-champagne);text-align:center">Pojūtis</p>
+            <p style="margin:0;font-family:var(--font-display);font-size:22px">Šiltas, apgaubiantis</p>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 160px 1fr;gap:32px;align-items:center;padding:26px 0;border-bottom:1px solid var(--color-line);transition:background 250ms ease" style-hover="background:rgba(36,33,30,.025)">
+            <p style="margin:0;font-family:var(--font-display);font-size:22px;text-align:right">Gėliškas, žemiškas</p>
+            <p style="margin:0;font-size:10.5px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--color-champagne);text-align:center">Kvapo kryptis</p>
+            <p style="margin:0;font-family:var(--font-display);font-size:22px">Aromatingas, rytietiškas</p>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 160px 1fr;gap:32px;align-items:center;padding:26px 0;border-bottom:1px solid var(--color-line);transition:background 250ms ease" style-hover="background:rgba(36,33,30,.025)">
+            <p style="margin:0;font-family:var(--font-display);font-size:22px;text-align:right">Vonia, darbo erdvė, svetainė</p>
+            <p style="margin:0;font-size:10.5px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--color-champagne);text-align:center">Geriausia erdvė</p>
+            <p style="margin:0;font-family:var(--font-display);font-size:22px">Miegamasis, poilsio zona, svetainė</p>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 160px 1fr;gap:32px;align-items:center;padding:26px 0;border-bottom:1px solid var(--color-line);transition:background 250ms ease" style-hover="background:rgba(36,33,30,.025)">
+            <p style="margin:0;font-family:var(--font-display);font-size:22px;text-align:right">Šviesi, rami</p>
+            <p style="margin:0;font-size:10.5px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--color-champagne);text-align:center">Nuotaika</p>
+            <p style="margin:0;font-family:var(--font-display);font-size:22px">Jauki, intymi</p>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 160px 1fr;gap:32px;align-items:center;padding:26px 0;border-bottom:1px solid var(--color-line);transition:background 250ms ease" style-hover="background:rgba(36,33,30,.025)">
+            <p style="margin:0;font-family:var(--font-display);font-size:22px;text-align:right">Bergamotė, jazminas, ambra</p>
+            <p style="margin:0;font-size:10.5px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--color-champagne);text-align:center">Pagrindinės natos</p>
+            <p style="margin:0;font-family:var(--font-display);font-size:22px">Anyžius, vanilė, tonka</p>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 160px 1fr;gap:32px;align-items:center;padding-top:44px">
+            <div style="display:flex;justify-content:flex-end"><a href="#" style="display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding-inline:24px;background:var(--color-charcoal);color:var(--color-ivory);border:1px solid var(--color-charcoal);border-radius:var(--radius-small);font-size:12px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;transition:transform 250ms ease,box-shadow 250ms ease" style-hover="transform:translateY(-2px);box-shadow:var(--shadow-hover);color:var(--color-ivory)">Pasirinkti Room No. 1</a></div>
+            <div></div>
+            <div style="display:flex;justify-content:flex-start"><a href="#" style="display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding-inline:24px;background:transparent;color:var(--color-charcoal);border:1px solid var(--color-charcoal);border-radius:var(--radius-small);font-size:12px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;transition:background 250ms ease" style-hover="background:rgba(36,33,30,.06);color:var(--color-charcoal)">Pasirinkti Room No. 2</a></div>
+          </div>
+        </div>
+      </div>
+      </sc-if>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       wc: front-page.php — section: fragrance note cards
+       (repeatable unit; one card per product)
+       ================================================================ -->
+  <section aria-labelledby="notes-heading" data-screen-label="Kvapo natos" style="background:var(--color-soft-white);padding-block:clamp(72px,9vw,120px)">
+    <div style="max-width:var(--container-max);margin-inline:auto;padding-inline:clamp(14px,3vw,20px);display:flex;flex-direction:column;gap:clamp(36px,4vw,56px)">
+      <h2 id="notes-heading" data-reveal="true" style="margin:0;font-family:var(--font-display);font-weight:400;font-size:clamp(36px,4.6vw,60px);line-height:1.1;text-align:center">Kvapo natos.</h2>
+      <!-- variant A: dviejų pakopų kortelės -->
+      <sc-if value="{{ notesCards }}" hint-placeholder-val="{{ true }}">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:clamp(20px,3vw,32px)">
+        <!-- card: Room No. 1 -->
+        <article data-reveal="true" style="background:var(--color-ivory);border:1px solid var(--color-line);border-radius:var(--radius-medium);padding:clamp(32px,4vw,48px);display:flex;flex-direction:column;gap:28px">
+          <header style="display:flex;align-items:center;gap:12px">
+            <span aria-hidden="true" style="width:9px;height:9px;border-radius:999px;background:var(--color-room-one)"></span>
+            <h3 style="margin:0;font-family:var(--font-display);font-weight:400;font-size:clamp(24px,2.2vw,29px)">Room No. 1</h3>
+          </header>
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <p style="margin:0;font-size:10.5px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--color-taupe)">Viršus</p>
+            <p style="margin:0;font-family:var(--font-display);font-size:21px;line-height:1.45">Bergamotė · Baltasis šalavijas</p>
+          </div>
+          <div aria-hidden="true" style="height:1px;background:var(--color-line)"></div>
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <p style="margin:0;font-size:10.5px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--color-taupe)">Širdis</p>
+            <p style="margin:0;font-family:var(--font-display);font-size:21px;line-height:1.45">Jazminas · Rožė · Jūros druska</p>
+          </div>
+          <div aria-hidden="true" style="height:1px;background:var(--color-line)"></div>
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <p style="margin:0;font-size:10.5px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--color-taupe)">Pagrindas</p>
+            <p style="margin:0;font-family:var(--font-display);font-size:21px;line-height:1.45">Pušis · Muskusas · Ambra</p>
+          </div>
+        </article>
+        <!-- card: Room No. 2 -->
+        <article data-reveal="true" style="background:#f0e7dd;border:1px solid var(--color-line);border-radius:var(--radius-medium);padding:clamp(32px,4vw,48px);display:flex;flex-direction:column;gap:28px">
+          <header style="display:flex;align-items:center;gap:12px">
+            <span aria-hidden="true" style="width:9px;height:9px;border-radius:999px;background:var(--color-room-two)"></span>
+            <h3 style="margin:0;font-family:var(--font-display);font-weight:400;font-size:clamp(24px,2.2vw,29px)">Room No. 2</h3>
+          </header>
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <p style="margin:0;font-size:10.5px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--color-taupe)">Viršus</p>
+            <p style="margin:0;font-family:var(--font-display);font-size:21px;line-height:1.45">Žvaigždinis anyžius · Levanda</p>
+          </div>
+          <div aria-hidden="true" style="height:1px;background:var(--color-line)"></div>
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <p style="margin:0;font-size:10.5px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--color-taupe)">Širdis</p>
+            <p style="margin:0;font-family:var(--font-display);font-size:21px;line-height:1.45">Medvilnė · Kipriolė · Vanilė</p>
+          </div>
+          <div aria-hidden="true" style="height:1px;background:var(--color-line)"></div>
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <p style="margin:0;font-size:10.5px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--color-taupe)">Pagrindas</p>
+            <p style="margin:0;font-family:var(--font-display);font-size:21px;line-height:1.45">Tonka pupelės · Baltasis muskusas · Rytietiškas akordas</p>
+          </div>
+        </article>
+      </div>
+      </sc-if>
+
+      <!-- variant B: horizontalios kompozicijos juostos -->
+      <sc-if value="{{ notesBands }}" hint-placeholder-val="{{ false }}">
+      <div data-reveal="true" style="display:flex;flex-direction:column">
+        <article style="display:flex;flex-wrap:wrap;gap:32px 48px;padding:44px 0;border-top:1px solid var(--color-charcoal)">
+          <div style="flex:0 1 200px;min-width:180px;display:flex;flex-direction:column;gap:8px">
+            <span aria-hidden="true" style="width:10px;height:10px;border-radius:999px;background:var(--color-room-one);margin-bottom:6px"></span>
+            <h3 style="margin:0;font-family:var(--font-display);font-weight:400;font-size:30px;line-height:1.15">Room No. 1</h3>
+            <p style="margin:0;font-family:var(--font-display);font-style:italic;font-size:17px;color:var(--color-taupe)">Gaivus ir tyras</p>
+          </div>
+          <div style="flex:1;min-width:min(100%,460px);display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:32px 40px">
+            <div style="display:flex;flex-direction:column;gap:14px;padding-top:4px">
+              <div style="display:flex;align-items:baseline;gap:12px"><span style="font-family:var(--font-display);font-size:15px;color:var(--color-room-one)">01</span><span style="font-size:10.5px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--color-taupe)">Viršus</span></div>
+              <div aria-hidden="true" style="height:1px;background:linear-gradient(90deg,var(--color-room-one) 0 32px,var(--color-line) 32px)"></div>
+              <p style="margin:0;font-family:var(--font-display);font-size:23px;line-height:1.4">Bergamotė<br />Baltasis šalavijas</p>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:14px;padding-top:4px">
+              <div style="display:flex;align-items:baseline;gap:12px"><span style="font-family:var(--font-display);font-size:15px;color:var(--color-room-one)">02</span><span style="font-size:10.5px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--color-taupe)">Širdis</span></div>
+              <div aria-hidden="true" style="height:1px;background:linear-gradient(90deg,var(--color-room-one) 0 32px,var(--color-line) 32px)"></div>
+              <p style="margin:0;font-family:var(--font-display);font-size:23px;line-height:1.4">Jazminas · Rožė<br />Jūros druska</p>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:14px;padding-top:4px">
+              <div style="display:flex;align-items:baseline;gap:12px"><span style="font-family:var(--font-display);font-size:15px;color:var(--color-room-one)">03</span><span style="font-size:10.5px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--color-taupe)">Pagrindas</span></div>
+              <div aria-hidden="true" style="height:1px;background:linear-gradient(90deg,var(--color-room-one) 0 32px,var(--color-line) 32px)"></div>
+              <p style="margin:0;font-family:var(--font-display);font-size:23px;line-height:1.4">Pušis · Muskusas<br />Ambra</p>
+            </div>
+          </div>
+        </article>
+        <article style="display:flex;flex-wrap:wrap;gap:32px 48px;padding:44px 0 8px;border-top:1px solid var(--color-line)">
+          <div style="flex:0 1 200px;min-width:180px;display:flex;flex-direction:column;gap:8px">
+            <span aria-hidden="true" style="width:10px;height:10px;border-radius:999px;background:var(--color-room-two);margin-bottom:6px"></span>
+            <h3 style="margin:0;font-family:var(--font-display);font-weight:400;font-size:30px;line-height:1.15">Room No. 2</h3>
+            <p style="margin:0;font-family:var(--font-display);font-style:italic;font-size:17px;color:var(--color-taupe)">Aromatingas ir šiltas</p>
+          </div>
+          <div style="flex:1;min-width:min(100%,460px);display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:32px 40px">
+            <div style="display:flex;flex-direction:column;gap:14px;padding-top:4px">
+              <div style="display:flex;align-items:baseline;gap:12px"><span style="font-family:var(--font-display);font-size:15px;color:var(--color-room-two)">01</span><span style="font-size:10.5px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--color-taupe)">Viršus</span></div>
+              <div aria-hidden="true" style="height:1px;background:linear-gradient(90deg,var(--color-room-two) 0 32px,var(--color-line) 32px)"></div>
+              <p style="margin:0;font-family:var(--font-display);font-size:23px;line-height:1.4">Žvaigždinis anyžius<br />Levanda</p>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:14px;padding-top:4px">
+              <div style="display:flex;align-items:baseline;gap:12px"><span style="font-family:var(--font-display);font-size:15px;color:var(--color-room-two)">02</span><span style="font-size:10.5px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--color-taupe)">Širdis</span></div>
+              <div aria-hidden="true" style="height:1px;background:linear-gradient(90deg,var(--color-room-two) 0 32px,var(--color-line) 32px)"></div>
+              <p style="margin:0;font-family:var(--font-display);font-size:23px;line-height:1.4">Medvilnė · Kipriolė<br />Vanilė</p>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:14px;padding-top:4px">
+              <div style="display:flex;align-items:baseline;gap:12px"><span style="font-family:var(--font-display);font-size:15px;color:var(--color-room-two)">03</span><span style="font-size:10.5px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--color-taupe)">Pagrindas</span></div>
+              <div aria-hidden="true" style="height:1px;background:linear-gradient(90deg,var(--color-room-two) 0 32px,var(--color-line) 32px)"></div>
+              <p style="margin:0;font-family:var(--font-display);font-size:23px;line-height:1.4">Tonka pupelės<br />Baltasis muskusas<br />Rytietiškas akordas</p>
+            </div>
+          </div>
+        </article>
+      </div>
+      </sc-if>
+
+      <!-- variant C: vertikali kvapo ašis -->
+      <sc-if value="{{ notesAxis }}" hint-placeholder-val="{{ false }}">
+      <div data-reveal="true" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:clamp(20px,3vw,32px)">
+        <article style="border:1px solid var(--color-line);border-radius:var(--radius-medium);background:var(--color-ivory);padding:clamp(32px,4vw,52px) clamp(32px,4vw,52px) 44px;display:flex;flex-direction:column;gap:36px;transition:box-shadow 250ms ease" style-hover="box-shadow:var(--shadow-hover)">
+          <header style="display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap">
+            <h3 style="margin:0;font-family:var(--font-display);font-weight:400;font-size:31px">Room No. 1</h3>
+            <span style="font-family:var(--font-display);font-style:italic;font-size:17px;color:var(--color-room-one)">Fresh &amp; Pure</span>
+          </header>
+          <div style="display:flex;flex-direction:column">
+            <div style="display:grid;grid-template-columns:20px 1fr;column-gap:28px">
+              <div aria-hidden="true" style="display:flex;flex-direction:column;align-items:center">
+                <span style="width:9px;height:9px;border-radius:999px;background:var(--color-room-one);flex:none;margin-top:3px"></span>
+                <span style="flex:1;width:1px;background:linear-gradient(var(--color-room-one),rgba(137,146,134,.2))"></span>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:8px;padding-bottom:34px">
+                <p style="margin:0;font-size:10.5px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--color-taupe)">Viršus — pirmas įspūdis</p>
+                <p style="margin:0;font-family:var(--font-display);font-size:24px;line-height:1.35">Bergamotė · Baltasis šalavijas</p>
+              </div>
+            </div>
+            <div style="display:grid;grid-template-columns:20px 1fr;column-gap:28px">
+              <div aria-hidden="true" style="display:flex;flex-direction:column;align-items:center">
+                <span style="width:9px;height:9px;border-radius:999px;border:1px solid var(--color-room-one);background:transparent;flex:none;margin-top:3px"></span>
+                <span style="flex:1;width:1px;background:linear-gradient(rgba(137,146,134,.2),var(--color-room-one))"></span>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:8px;padding-bottom:34px">
+                <p style="margin:0;font-size:10.5px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--color-taupe)">Širdis — charakteris</p>
+                <p style="margin:0;font-family:var(--font-display);font-size:24px;line-height:1.35">Jazminas · Rožė · Jūros druska</p>
+              </div>
+            </div>
+            <div style="display:grid;grid-template-columns:20px 1fr;column-gap:28px">
+              <div aria-hidden="true" style="display:flex;flex-direction:column;align-items:center">
+                <span style="width:9px;height:9px;border-radius:999px;background:var(--color-room-one);flex:none;margin-top:3px"></span>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:8px">
+                <p style="margin:0;font-size:10.5px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--color-taupe)">Pagrindas — išliekantis pojūtis</p>
+                <p style="margin:0;font-family:var(--font-display);font-size:24px;line-height:1.35">Pušis · Muskusas · Ambra</p>
+              </div>
+            </div>
+          </div>
+        </article>
+        <article style="border:1px solid var(--color-line);border-radius:var(--radius-medium);background:#f0e7dd;padding:clamp(32px,4vw,52px) clamp(32px,4vw,52px) 44px;display:flex;flex-direction:column;gap:36px;transition:box-shadow 250ms ease" style-hover="box-shadow:var(--shadow-hover)">
+          <header style="display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap">
+            <h3 style="margin:0;font-family:var(--font-display);font-weight:400;font-size:31px">Room No. 2</h3>
+            <span style="font-family:var(--font-display);font-style:italic;font-size:17px;color:var(--color-room-two)">Aromatic Oriental</span>
+          </header>
+          <div style="display:flex;flex-direction:column">
+            <div style="display:grid;grid-template-columns:20px 1fr;column-gap:28px">
+              <div aria-hidden="true" style="display:flex;flex-direction:column;align-items:center">
+                <span style="width:9px;height:9px;border-radius:999px;background:var(--color-room-two);flex:none;margin-top:3px"></span>
+                <span style="flex:1;width:1px;background:linear-gradient(var(--color-room-two),rgba(136,96,76,.2))"></span>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:8px;padding-bottom:34px">
+                <p style="margin:0;font-size:10.5px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--color-taupe)">Viršus — pirmas įspūdis</p>
+                <p style="margin:0;font-family:var(--font-display);font-size:24px;line-height:1.35">Žvaigždinis anyžius · Levanda</p>
+              </div>
+            </div>
+            <div style="display:grid;grid-template-columns:20px 1fr;column-gap:28px">
+              <div aria-hidden="true" style="display:flex;flex-direction:column;align-items:center">
+                <span style="width:9px;height:9px;border-radius:999px;border:1px solid var(--color-room-two);background:transparent;flex:none;margin-top:3px"></span>
+                <span style="flex:1;width:1px;background:linear-gradient(rgba(136,96,76,.2),var(--color-room-two))"></span>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:8px;padding-bottom:34px">
+                <p style="margin:0;font-size:10.5px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--color-taupe)">Širdis — charakteris</p>
+                <p style="margin:0;font-family:var(--font-display);font-size:24px;line-height:1.35">Medvilnė · Kipriolė · Vanilė</p>
+              </div>
+            </div>
+            <div style="display:grid;grid-template-columns:20px 1fr;column-gap:28px">
+              <div aria-hidden="true" style="display:flex;flex-direction:column;align-items:center">
+                <span style="width:9px;height:9px;border-radius:999px;background:var(--color-room-two);flex:none;margin-top:3px"></span>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:8px">
+                <p style="margin:0;font-size:10.5px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--color-taupe)">Pagrindas — išliekantis pojūtis</p>
+                <p style="margin:0;font-family:var(--font-display);font-size:24px;line-height:1.35">Tonka pupelės · Baltasis muskusas · Rytietiškas akordas</p>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+      </sc-if>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       wc: front-page.php — section: brand manifesto (dark)
+       ================================================================ -->
+  <section aria-labelledby="manifesto-heading" data-screen-label="Manifestas" style="background:var(--color-charcoal);color:var(--color-ivory);padding-block:clamp(72px,9vw,120px)">
+    <div style="max-width:var(--container-max);margin-inline:auto;padding-inline:clamp(14px,3vw,20px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:clamp(40px,6vw,80px);align-items:center">
+      <div data-reveal="true" style="display:flex;justify-content:center">
+        <div aria-hidden="true" style="width:clamp(220px,26vw,320px);aspect-ratio:1;border:1px solid rgba(244,240,232,.22);border-radius:999px;display:flex;align-items:center;justify-content:center">
+          <span style="font-family:var(--font-display);font-size:clamp(120px,14vw,180px);font-weight:400;color:rgba(244,240,232,.14);line-height:1">F</span>
+        </div>
+      </div>
+      <div data-reveal="true" style="display:flex;flex-direction:column;gap:24px;max-width:520px">
+        <h2 id="manifesto-heading" style="margin:0;font-family:var(--font-display);font-weight:400;font-size:clamp(32px,4vw,52px);line-height:1.2;text-wrap:balance">Kvapas nėra tik interjero detalė. Tai erdvės atmosfera.</h2>
+        <div aria-hidden="true" style="width:40px;height:1px;background:var(--color-champagne)"></div>
+        <p style="margin:0;font-size:16px;line-height:1.7;color:#C9C1B8;max-width:460px">Tikime lėtais ritualais ir erdve, kurioje kiekviena detalė turi savo vietą. Kvapas — tyliausia iš jų.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       wc: front-page.php — section: usage steps
+       ================================================================ -->
+  <section aria-labelledby="usage-heading" data-screen-label="Naudojimas" style="background:var(--color-stone);padding-block:clamp(72px,9vw,120px)">
+    <div style="max-width:var(--container-max);margin-inline:auto;padding-inline:clamp(14px,3vw,20px);display:flex;flex-direction:column;gap:clamp(36px,4vw,56px)">
+      <h2 id="usage-heading" data-reveal="true" style="margin:0;font-family:var(--font-display);font-weight:400;font-size:clamp(36px,4.6vw,60px);line-height:1.1;text-align:center">Paprastas ritualas.</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:clamp(18px,2.5vw,28px)">
+        <article data-reveal="true" style="background:var(--color-ivory);border:1px solid var(--color-line);border-radius:var(--radius-medium);padding:clamp(30px,3.5vw,44px);display:flex;flex-direction:column;gap:18px">
+          <span aria-hidden="true" style="font-family:var(--font-display);font-size:56px;line-height:1;color:var(--color-charcoal)">1</span>
+          <div aria-hidden="true" style="width:32px;height:1px;background:var(--color-champagne)"></div>
+          <h3 style="margin:0;font-family:var(--font-display);font-weight:400;font-size:25px">Atverkite</h3>
+          <p style="margin:0;font-size:15px;line-height:1.6;color:var(--color-taupe)">Išpakuokite difuzorių ir įmerkite lazdeles.</p>
+        </article>
+        <article data-reveal="true" style="background:var(--color-ivory);border:1px solid var(--color-line);border-radius:var(--radius-medium);padding:clamp(30px,3.5vw,44px);display:flex;flex-direction:column;gap:18px">
+          <span aria-hidden="true" style="font-family:var(--font-display);font-size:56px;line-height:1;color:var(--color-charcoal)">2</span>
+          <div aria-hidden="true" style="width:32px;height:1px;background:var(--color-champagne)"></div>
+          <h3 style="margin:0;font-family:var(--font-display);font-weight:400;font-size:25px">Leiskite skleistis</h3>
+          <p style="margin:0;font-size:15px;line-height:1.6;color:var(--color-taupe)">Po kelių valandų aromatas tolygiai užpildo erdvę.</p>
+        </article>
+        <article data-reveal="true" style="background:var(--color-ivory);border:1px solid var(--color-line);border-radius:var(--radius-medium);padding:clamp(30px,3.5vw,44px);display:flex;flex-direction:column;gap:18px">
+          <span aria-hidden="true" style="font-family:var(--font-display);font-size:56px;line-height:1;color:var(--color-charcoal)">3</span>
+          <div aria-hidden="true" style="width:32px;height:1px;background:var(--color-champagne)"></div>
+          <h3 style="margin:0;font-family:var(--font-display);font-weight:400;font-size:25px">Reguliuokite</h3>
+          <p style="margin:0;font-size:15px;line-height:1.6;color:var(--color-taupe)">Apverskite lazdeles pagal norimą kvapo intensyvumą.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       wc: front-page.php — section: newsletter (visual only)
+       ================================================================ -->
+  <section aria-labelledby="newsletter-heading" data-screen-label="Naujienlaiškis" style="background:var(--color-ivory);padding-block:clamp(72px,9vw,120px)">
+    <div data-reveal="true" style="max-width:620px;margin-inline:auto;padding-inline:clamp(14px,3vw,20px);text-align:center;display:flex;flex-direction:column;gap:28px;align-items:center">
+      <h2 id="newsletter-heading" style="margin:0;font-family:var(--font-display);font-weight:400;font-size:clamp(32px,4vw,48px);line-height:1.15;text-wrap:balance">Apie kvapus, erdves ir jaukius ritualus</h2>
+      <p style="margin:0;font-size:15px;line-height:1.6;color:var(--color-taupe)">Retkarčiais — laiškas apie naujus kvapus ir ramius namų ritualus.</p>
+      <form onSubmit="{{ preventSubmit }}" style="display:flex;gap:18px;align-items:flex-end;width:100%;max-width:460px;flex-wrap:wrap;justify-content:center">
+        <label style="flex:1;min-width:220px;text-align:left;display:flex;flex-direction:column;gap:8px">
+          <span style="font-size:10px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--color-taupe)">El. paštas</span>
+          <input type="email" name="email" placeholder="vardas@pastas.lt" autoComplete="email" style="border:none;border-bottom:1px solid var(--color-charcoal);background:transparent;padding:10px 2px;font-family:var(--font-body);font-size:15px;color:var(--color-charcoal);border-radius:0;outline-offset:6px" />
+        </label>
+        <button type="submit" style="background:none;border:none;cursor:pointer;font-family:var(--font-body);font-size:12px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--color-charcoal);padding:12px 2px;border-bottom:1px solid transparent;transition:border-color 250ms ease" style-hover="border-bottom-color:var(--color-charcoal)">Prisijungti →</button>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<!-- ================================================================
+     wc: footer.php — site footer
+     ================================================================ -->
+<footer id="kontaktai" style="background:var(--color-charcoal);color:var(--color-ivory);padding-block:clamp(64px,8vw,100px) 36px">
+  <div style="max-width:var(--container-max);margin-inline:auto;padding-inline:clamp(14px,3vw,20px);display:flex;flex-direction:column;gap:clamp(44px,6vw,72px)">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:clamp(32px,4vw,56px)">
+      <div style="display:flex;flex-direction:column;gap:18px;max-width:320px">
+        <p style="margin:0;font-family:var(--font-display);font-size:20px;letter-spacing:.42em;text-indent:.42em">FENNARY</p>
+        <p style="margin:0;font-size:14px;line-height:1.7;color:#C9C1B8">Rankomis pilstomi namų kvapai, kuriami Lietuvoje — erdvei, kurioje gera būti.</p>
+      </div>
+      <nav aria-label="Informacija" style="display:flex;flex-direction:column;gap:14px">
+        <p style="margin:0;font-size:10px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:#8f887f">Parduotuvė</p>
+        <a href="#apie" style="font-size:14px;color:var(--color-ivory)" style-hover="color:var(--color-champagne)">Apie mus</a>
+        <a href="#" style="font-size:14px;color:var(--color-ivory)" style-hover="color:var(--color-champagne)">Pristatymas ir grąžinimas</a>
+        <a href="#" style="font-size:14px;color:var(--color-ivory)" style-hover="color:var(--color-champagne)">D.U.K.</a>
+        <a href="#" style="font-size:14px;color:var(--color-ivory)" style-hover="color:var(--color-champagne)">Privatumo politika</a>
+      </nav>
+      <nav aria-label="Kontaktai" style="display:flex;flex-direction:column;gap:14px">
+        <p style="margin:0;font-size:10px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:#8f887f">Susisiekite</p>
+        <a href="mailto:labas@fennary.lt" style="font-size:14px;color:var(--color-ivory)" style-hover="color:var(--color-champagne)">labas@fennary.lt</a>
+        <a href="#" style="font-size:14px;color:var(--color-ivory)" style-hover="color:var(--color-champagne)">Instagram</a>
+        <a href="#kontaktai" style="font-size:14px;color:var(--color-ivory)" style-hover="color:var(--color-champagne)">Kontaktai</a>
+      </nav>
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <p style="margin:0;font-size:10px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:#8f887f">Pristatymas ir mokėjimai</p>
+        <div style="display:flex;flex-wrap:wrap;gap:8px">
+          <span style="border:1px solid rgba(244,240,232,.25);border-radius:var(--radius-small);padding:6px 10px;font-size:10px;letter-spacing:.1em;color:#C9C1B8">VISA</span>
+          <span style="border:1px solid rgba(244,240,232,.25);border-radius:var(--radius-small);padding:6px 10px;font-size:10px;letter-spacing:.1em;color:#C9C1B8">MASTERCARD</span>
+          <span style="border:1px solid rgba(244,240,232,.25);border-radius:var(--radius-small);padding:6px 10px;font-size:10px;letter-spacing:.1em;color:#C9C1B8">OMNIVA</span>
+          <span style="border:1px solid rgba(244,240,232,.25);border-radius:var(--radius-small);padding:6px 10px;font-size:10px;letter-spacing:.1em;color:#C9C1B8">LP EXPRESS</span>
+        </div>
+      </div>
+    </div>
+    <div style="border-top:1px solid rgba(244,240,232,.16);padding-top:24px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center">
+      <p style="margin:0;font-size:12px;color:#8f887f;letter-spacing:.06em">© FENNARY 2026</p>
+      <p style="margin:0;font-size:12px;color:#8f887f;letter-spacing:.06em">Sukurta Lietuvoje</p>
+    </div>
+  </div>
+</footer>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;comparisonStyle&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;Sąrašas&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;options&quot;:[&quot;Lentelė&quot;,&quot;Duetas&quot;,&quot;Sąrašas&quot;],&quot;section&quot;:&quot;Kas jums artimesnė?&quot;},&quot;notesStyle&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;Juostos&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;options&quot;:[&quot;Kortelės&quot;,&quot;Juostos&quot;,&quot;Ašis&quot;],&quot;section&quot;:&quot;Kvapo natos&quot;},&quot;showAnnouncement&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Antraštė&quot;},&quot;revealAnimations&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Judesys&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    const cs = this.props.comparisonStyle ?? 'Lentelė';
+    const ns = this.props.notesStyle ?? 'Kortelės';
+    return {
+      showAnnouncement: this.props.showAnnouncement ?? true,
+      preventSubmit: (e) => e.preventDefault(),
+      compareTable: cs === 'Lentelė',
+      compareDuet: cs === 'Duetas',
+      compareLedger: cs === 'Sąrašas',
+      notesCards: ns === 'Kortelės',
+      notesBands: ns === 'Juostos',
+      notesAxis: ns === 'Ašis',
+    };
+  }
+
+  componentDidMount() {
+    // Sticky header: gain background + shrink after scroll
+    this._header = document.querySelector('[data-header]');
+    this._onScroll = () => {
+      const h = this._header;
+      if (!h) return;
+      const s = window.scrollY > 8;
+      h.style.background = s ? 'rgba(251,250,247,.94)' : 'transparent';
+      h.style.backdropFilter = s ? 'blur(8px)' : 'none';
+      h.style.paddingBlock = s ? '10px' : '18px';
+    };
+    window.addEventListener('scroll', this._onScroll, { passive: true });
+    this._onScroll();
+
+    this._setupReveal();
+  }
+
+  componentDidUpdate() {
+    // Prop/tweak changes can remount reveal targets — re-observe safely
+    this._setupReveal();
+  }
+
+  _setupReveal() {
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const enabled = (this.props.revealAnimations ?? true) && !reduce;
+    const els = Array.from(document.querySelectorAll('[data-reveal]'));
+    if (!enabled) {
+      els.forEach((el) => { el.style.opacity = '1'; el.style.transform = 'none'; });
+      return;
+    }
+    if (!this._io) {
+      this._io = new IntersectionObserver((entries) => {
+        entries.forEach((en) => {
+          if (en.isIntersecting) {
+            en.target.style.opacity = '1';
+            en.target.style.transform = 'none';
+            en.target.dataset.revealed = 'true';
+            this._io.unobserve(en.target);
+          }
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -5% 0px' });
+    }
+    els.forEach((el) => {
+      if (el.dataset.revealed === 'true' || el.dataset.revealObserved === 'true') return;
+      el.dataset.revealObserved = 'true';
+      // Reveal immediately if already in view; otherwise hide and observe
+      const r = el.getBoundingClientRect();
+      const inView = r.top < window.innerHeight && r.bottom > 0;
+      el.style.transition = 'opacity 600ms ease, transform 600ms ease';
+      if (inView) {
+        el.style.opacity = '1';
+        el.style.transform = 'none';
+        el.dataset.revealed = 'true';
+        return;
+      }
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(16px)';
+      this._io.observe(el);
+    });
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this._onScroll);
+    if (this._io) this._io.disconnect();
+  }
+}
+</script>
+</body>
+</html>

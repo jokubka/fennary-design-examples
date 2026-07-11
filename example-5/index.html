@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Archivo:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  html, body { margin: 0; padding: 0; background: #FDFDFC; }
+  body { font-family: 'Archivo', sans-serif; color: #141412; -webkit-font-smoothing: antialiased; }
+  a { color: #141412; text-decoration: none; }
+  a:hover { color: #6E7566; }
+  ::selection { background: #E3E5DE; }
+</style>
+</helmet>
+
+<div style="background: #FDFDFC; min-width: 1200px" data-screen-label="Fennary homepage">
+
+  <!-- Announcement bar -->
+  <sc-if value="{{ showAnnouncement }}" hint-placeholder-val="{{ true }}">
+    <div style="background: #141412; color: #FDFDFC; text-align: center; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; padding: 11px 24px">
+      Nemokamas pristatymas Lietuvoje nuo 60&nbsp;€
+    </div>
+  </sc-if>
+
+  <!-- Nav -->
+  <header style="display: flex; align-items: center; justify-content: space-between; padding: 26px 56px; border-bottom: 1px solid #ECECE8">
+    <nav style="display: flex; gap: 36px; flex: 1; font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase">
+      <a href="#kvapai">Kvapai</a>
+      <a href="#apie">Apie</a>
+      <a href="#kontaktai">Kontaktai</a>
+    </nav>
+    <img src="uploads/Fennary.png" alt="Fennary" style="height: 26px; display: block; mix-blend-mode: multiply">
+    <div style="display: flex; gap: 36px; flex: 1; justify-content: flex-end; font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase">
+      <a href="#paieska">Paieška</a>
+      <a href="#krepselis">Krepšelis (0)</a>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section style="display: grid; grid-template-columns: 1fr 1fr; align-items: stretch; border-bottom: 1px solid #ECECE8">
+    <div style="padding: 110px 72px 90px 56px; display: flex; flex-direction: column; justify-content: center">
+      <div style="font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: #6E7566; margin-bottom: 28px">Nendrių difuzoriai moderniems namams</div>
+      <h1 style="font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 84px; line-height: 1.02; margin: 0 0 32px; letter-spacing: -0.01em; text-wrap: balance">Du kvapai.<br>Nieko nereikalingo.</h1>
+      <p style="font-size: 16px; line-height: 1.65; color: #55534E; max-width: 420px; margin: 0 0 44px">Fennary kuria ilgai išliekančius namų kvapus — be atviros liepsnos, be pertekliaus. Vienas difuzorius kvepia iki dešimties savaičių.</p>
+      <div style="display: flex; gap: 16px; align-items: center">
+        <a href="#kvapai" style="background: #141412; color: #FDFDFC; padding: 17px 38px; font-size: 13px; letter-spacing: 0.14em; text-transform: uppercase" style-hover="background: #2E2D2A; color: #FDFDFC">Peržiūrėti kvapus</a>
+        <span style="font-size: 13px; color: #8A877F">49 € / 100 ml</span>
+      </div>
+    </div>
+    <div style="position: relative; min-height: 640px; border-left: 1px solid #ECECE8">
+      <x-import component-from-global-scope="image-slot" from="./image-slot.js" id="hero" shape="rect" placeholder="Difuzoriaus nuotrauka interjere" hint-size="100%,640px" style="position:absolute; inset:0"></x-import>
+    </div>
+  </section>
+
+  <!-- Products -->
+  <section id="kvapai" style="padding: 100px 56px 110px">
+    <div style="display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 56px">
+      <h2 style="font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 48px; margin: 0">Kvapai</h2>
+      <span style="font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: #8A877F">Kolekcija — du kvapai</span>
+    </div>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px">
+      <sc-for list="{{ products }}" as="p" hint-placeholder-count="2">
+        <div style="border: 1px solid #ECECE8; display: flex; flex-direction: column">
+          <div style="position: relative; height: 520px; border-bottom: 1px solid #ECECE8">
+            <x-import component-from-global-scope="image-slot" from="./image-slot.js" id="{{ p.slotId }}" shape="rect" placeholder="{{ p.placeholder }}" hint-size="100%,520px" style="position:absolute; inset:0"></x-import>
+          </div>
+          <div style="padding: 34px 36px 40px; display: flex; flex-direction: column; gap: 14px">
+            <div style="display: flex; justify-content: space-between; align-items: baseline">
+              <span style="font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: #6E7566">{{ p.number }}</span>
+              <span style="font-size: 15px">49 €</span>
+            </div>
+            <h3 style="font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: 34px; margin: 0; letter-spacing: 0.01em">{{ p.name }}</h3>
+            <p style="font-size: 14px; line-height: 1.6; color: #55534E; margin: 0">{{ p.notes }}</p>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 14px">
+              <span style="font-size: 12px; color: #8A877F; letter-spacing: 0.08em">100 ml · iki 10 savaičių</span>
+              <a href="#krepselis" style="border: 1px solid #141412; padding: 13px 30px; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase" style-hover="background: #141412; color: #FDFDFC">Į krepšelį</a>
+            </div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- Brand statement -->
+  <section id="apie" style="background: #F4F4F1; border-top: 1px solid #ECECE8; border-bottom: 1px solid #ECECE8; padding: 130px 56px; text-align: center">
+    <div style="font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: #6E7566; margin-bottom: 30px">Apie Fennary</div>
+    <p style="font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 44px; line-height: 1.3; max-width: 880px; margin: 0 auto; text-wrap: balance">Kvapas — tyli interjero dalis. Todėl kuriame tik tiek, kiek galime padaryti nepriekaištingai: du kvapus, kuriuos norisi laikyti matomoje vietoje.</p>
+  </section>
+
+  <!-- How it works -->
+  <section style="padding: 100px 56px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 56px">
+    <sc-for list="{{ steps }}" as="s" hint-placeholder-count="3">
+      <div style="display: flex; flex-direction: column; gap: 18px; border-top: 1px solid #141412; padding-top: 26px">
+        <span style="font-size: 12px; letter-spacing: 0.2em; color: #6E7566">{{ s.num }}</span>
+        <h3 style="font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: 28px; margin: 0">{{ s.title }}</h3>
+        <p style="font-size: 14px; line-height: 1.65; color: #55534E; margin: 0">{{ s.text }}</p>
+      </div>
+    </sc-for>
+  </section>
+
+  <!-- Newsletter -->
+  <section style="border-top: 1px solid #ECECE8; padding: 96px 56px; display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center">
+    <div>
+      <h2 style="font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 42px; margin: 0 0 14px">Sužinokite pirmieji</h2>
+      <p style="font-size: 14px; line-height: 1.6; color: #55534E; margin: 0">Nauji kvapai ir pasiūlymai — retai, bet verta.</p>
+    </div>
+    <form style="display: flex; gap: 0; border-bottom: 1px solid #141412; padding-bottom: 12px" onSubmit="{{ preventSubmit }}">
+      <input type="email" placeholder="Jūsų el. paštas" style="flex: 1; border: none; outline: none; background: transparent; font-family: 'Archivo', sans-serif; font-size: 15px; color: #141412; padding: 10px 0"></input>
+      <button type="submit" style="background: none; border: none; cursor: pointer; font-family: 'Archivo', sans-serif; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: #141412; padding: 10px 0 10px 24px" style-hover="color: #6E7566">Prenumeruoti →</button>
+    </form>
+  </section>
+
+  <!-- Footer -->
+  <footer id="kontaktai" style="background: #141412; color: #FDFDFC; padding: 72px 56px 40px">
+    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 72px">
+      <img src="uploads/Fennary.png" alt="Fennary" style="height: 22px; display: block; filter: invert(1); mix-blend-mode: screen">
+      <div style="display: flex; gap: 72px; font-size: 13px; line-height: 2.1">
+        <div style="display: flex; flex-direction: column">
+          <span style="letter-spacing: 0.16em; text-transform: uppercase; font-size: 11px; color: #8A877F; margin-bottom: 10px">Parduotuvė</span>
+          <a href="#kvapai" style="color: #FDFDFC">Kvapai</a>
+          <a href="#apie" style="color: #FDFDFC">Apie mus</a>
+        </div>
+        <div style="display: flex; flex-direction: column">
+          <span style="letter-spacing: 0.16em; text-transform: uppercase; font-size: 11px; color: #8A877F; margin-bottom: 10px">Pagalba</span>
+          <a href="#pristatymas" style="color: #FDFDFC">Pristatymas ir grąžinimas</a>
+          <a href="#duk" style="color: #FDFDFC">DUK</a>
+        </div>
+        <div style="display: flex; flex-direction: column">
+          <span style="letter-spacing: 0.16em; text-transform: uppercase; font-size: 11px; color: #8A877F; margin-bottom: 10px">Kontaktai</span>
+          <a href="mailto:labas@fennary.lt" style="color: #FDFDFC">labas@fennary.lt</a>
+          <a href="#instagram" style="color: #FDFDFC">Instagram</a>
+        </div>
+      </div>
+    </div>
+    <div style="display: flex; justify-content: space-between; border-top: 1px solid #2E2D2A; padding-top: 24px; font-size: 12px; color: #8A877F">
+      <span>© 2026 Fennary. Visos teisės saugomos.</span>
+      <span>Privatumo politika · Taisyklės</span>
+    </div>
+  </footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;showAnnouncement&quot;: {&quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: true, &quot;tsType&quot;: &quot;boolean&quot;, &quot;section&quot;: &quot;Viršutinė juosta&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      showAnnouncement: this.props.showAnnouncement ?? true,
+      products: [
+        {
+          slotId: "product-1",
+          number: "Nr. 01",
+          name: "Figa ir kedras",
+          notes: "Šiltas, medienos tonų kvapas ramiai erdvei. Pavadinimą ir aprašymą pakeisime pagal jūsų tekstą.",
+          placeholder: "1 produkto nuotrauka"
+        },
+        {
+          slotId: "product-2",
+          number: "Nr. 02",
+          name: "Ambra ir šalavijas",
+          notes: "Gaivus, žolynų tonų kvapas šviesiems namams. Pavadinimą ir aprašymą pakeisime pagal jūsų tekstą.",
+          placeholder: "2 produkto nuotrauka"
+        }
+      ],
+      steps: [
+        { num: "01", title: "Įstatykite nendreles", text: "Atidarykite buteliuką ir įstatykite nendreles — kvapas pradės sklisti per kelias valandas." },
+        { num: "02", title: "Apverskite kartą per savaitę", text: "Norėdami intensyvesnio kvapo, apverskite nendreles. Rečiau — švelnesniam." },
+        { num: "03", title: "Mėgaukitės iki 10 savaičių", text: "Be liepsnos, be priežiūros. Kvapas tolygiai sklinda visą laiką." }
+      ],
+      preventSubmit: (e) => e.preventDefault()
+    };
+  }
+}
+</script>
+</body>
+</html>

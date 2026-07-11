@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="content-language" content="lt">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    /* ==== FENNARY theme tokens — edit here to retheme ==== */
+    :root{
+      --near-black:#17140F;
+      --espresso:#2C2723;
+      --ivory:#F6F1E9;
+      --sand:#E5DAC9;
+      --taupe:#C3B5A0;
+      --sage:#8C9A82;
+      --amber:#B98A5E;
+      --muted-on-light:#6E6152;
+      --hairline-dark:rgba(195,181,160,0.18);
+      --hairline-light:rgba(195,181,160,0.55);
+    }
+    html{scroll-behavior:smooth;}
+    /* Sticky header needs the wrapper chain to grow with content */
+    html, body, #dc-root, .sc-host{height:auto !important;min-height:100%;}
+    body{margin:0;background:var(--near-black);color:var(--espresso);font-family:'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;}
+    a{color:inherit;}
+    a:hover{color:inherit;}
+    ::selection{background:var(--sand);color:var(--near-black);}
+    input::placeholder{color:rgba(44,39,35,0.45);}
+    :focus-visible{outline:2px solid var(--amber);outline-offset:3px;}
+    /* Header: 2-row on mobile → single row (nav | wordmark | icons) on desktop */
+    @media (min-width:880px){
+      [data-header-inner]{grid-template-areas:'nav brand icons' !important;grid-template-columns:1fr auto 1fr !important;}
+      [data-brand]{justify-self:center !important;}
+      [data-header-nav]{justify-content:flex-start !important;}
+    }
+  </style>
+</helmet>
+
+<!-- ============ HEADER (WooCommerce: header.php) ============ -->
+<header data-site-header data-screen-label="Antraštė" style="position:sticky;top:0;z-index:60;background:var(--near-black);border-bottom:1px solid var(--hairline-dark);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);transition:background 350ms ease, box-shadow 350ms ease;">
+  <div data-header-inner style="max-width:1280px;margin:0 auto;padding:22px clamp(20px,5vw,56px);display:grid;grid-template-areas:'brand icons' 'nav nav';grid-template-columns:1fr auto;align-items:center;row-gap:14px;transition:padding 350ms ease;">
+    <nav data-header-nav aria-label="Pagrindinė navigacija" style="grid-area:nav;display:flex;flex-wrap:wrap;gap:clamp(16px,2.5vw,32px);justify-content:center;">
+      <a href="#pradzia" style="font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--taupe);text-decoration:none;transition:color 300ms ease;" style-hover="color:var(--ivory)">Pradžia</a>
+      <a href="#kvapai" style="font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--taupe);text-decoration:none;transition:color 300ms ease;" style-hover="color:var(--ivory)">Kvapai</a>
+      <a href="#apie" style="font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--taupe);text-decoration:none;transition:color 300ms ease;" style-hover="color:var(--ivory)">Apie</a>
+      <a href="#kontaktai" style="font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--taupe);text-decoration:none;transition:color 300ms ease;" style-hover="color:var(--ivory)">Kontaktai</a>
+    </nav>
+    <a data-brand href="#pradzia" style="grid-area:brand;justify-self:start;font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(20px,2.4vw,25px);letter-spacing:0.34em;color:var(--ivory);text-decoration:none;padding-left:0.34em;">FENNARY</a>
+    <div style="grid-area:icons;justify-self:end;display:flex;gap:8px;align-items:center;">
+      <button type="button" aria-label="Paieška" style="background:none;border:0;padding:8px;color:var(--taupe);cursor:pointer;display:flex;transition:color 300ms ease;" style-hover="color:var(--ivory)">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"></circle><line x1="16.2" y1="16.2" x2="21" y2="21"></line></svg>
+      </button>
+      <button type="button" aria-label="Krepšelis" style="background:none;border:0;padding:8px;color:var(--taupe);cursor:pointer;display:flex;transition:color 300ms ease;" style-hover="color:var(--ivory)">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" aria-hidden="true"><rect x="4.5" y="7.5" width="15" height="13" rx="1"></rect><path d="M8.5 7.5V6a3.5 3.5 0 0 1 7 0v1.5"></path></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <!-- ============ HERO (WooCommerce: front-page hero block) ============ -->
+  <section id="pradzia" data-screen-label="Hero" style="position:relative;background:var(--near-black);overflow:hidden;">
+    <div role="img" aria-label="Nuotrauka: FENNARY lazdelių difuzorius ant medinio staliuko prieblandoje, šilta vakaro šviesa" style="position:absolute;inset:0;background-color:#1C1812;background-image:repeating-linear-gradient(135deg, rgba(246,241,233,0.045) 0px, rgba(246,241,233,0.045) 1px, transparent 1px, transparent 16px);"></div>
+    <div data-hero-overlay style="position:absolute;inset:0;background:var(--near-black);opacity:0.55;transition:opacity 400ms ease;"></div>
+    <div style="position:absolute;inset:0;background:linear-gradient(180deg, rgba(23,20,15,0.55) 0%, rgba(23,20,15,0.1) 45%, rgba(23,20,15,0.88) 100%);"></div>
+    <span aria-hidden="true" style="position:absolute;top:96px;right:clamp(20px,5vw,56px);font-family:ui-monospace,'SF Mono',monospace;font-size:11px;letter-spacing:0.06em;color:rgba(195,181,160,0.55);">[ foto: cinematiškas interjero kadras ]</span>
+    <div style="position:relative;max-width:1280px;margin:0 auto;padding:clamp(140px,20vh,220px) clamp(20px,5vw,56px) clamp(88px,13vh,150px);min-height:78vh;box-sizing:border-box;display:flex;flex-direction:column;justify-content:flex-end;">
+      <div style="max-width:640px;display:flex;flex-direction:column;gap:24px;">
+        <p style="margin:0;font-size:11px;letter-spacing:0.28em;text-transform:uppercase;color:var(--taupe);">Rankų darbo namų kvapai</p>
+        <h1 style="margin:0;font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(42px,7vw,78px);line-height:1.04;color:var(--ivory);text-wrap:balance;">Namų kvapas, kuris tampa ritualu</h1>
+        <p style="margin:0;font-size:clamp(15px,1.6vw,17px);line-height:1.7;color:var(--taupe);max-width:480px;">FENNARY lazdelių difuzoriai — subtilūs, ilgai išliekantys, sukurti jūsų erdvei.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:28px;align-items:center;margin-top:8px;">
+          <a href="#kvapai" style="display:inline-block;background:var(--ivory);color:var(--near-black);padding:16px 38px;font-size:12px;letter-spacing:0.18em;text-transform:uppercase;text-decoration:none;transition:background 350ms ease;" style-hover="background:var(--sand)">Atrasti kvapus</a>
+          <a href="#apie" style="color:var(--ivory);font-size:12px;letter-spacing:0.18em;text-transform:uppercase;text-decoration:underline;text-decoration-color:var(--taupe);text-decoration-thickness:1px;text-underline-offset:6px;transition:text-decoration-color 350ms ease;" style-hover="text-decoration-color:var(--ivory)">Sužinoti daugiau</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ BRAND STORY (ivory) ============ -->
+  <section id="apie" data-screen-label="Apie FENNARY" style="background:var(--ivory);">
+    <div data-reveal style="max-width:720px;margin:0 auto;padding:clamp(88px,12vw,150px) clamp(20px,5vw,56px);text-align:center;">
+      <h2 style="margin:0 0 28px;font-size:11px;letter-spacing:0.28em;text-transform:uppercase;color:var(--muted-on-light);font-weight:500;">Apie FENNARY</h2>
+      <p style="margin:0;font-family:'Cormorant Garamond',serif;font-size:clamp(21px,2.8vw,29px);line-height:1.55;color:var(--espresso);text-wrap:pretty;">FENNARY gimė iš paprasto noro — kad namuose būtų gera būti. Kiekvienas difuzorius kuriamas nedideliais kiekiais, naudojant kruopščiai atrinktas kvapų kompozicijas, kurios lėtai ir tolygiai pripildo erdvę. Be dūmų, be liepsnos — tik tyras, harmoningas aromatas.</p>
+    </div>
+  </section>
+
+  <!-- ============ PRODUCTS (dark) — each <article data-product> is a self-contained repeatable unit; add a 3rd/4th card by duplicating one article (WooCommerce: product loop) ============ -->
+  <section id="kvapai" data-screen-label="Kvapai — katalogas" style="background:var(--near-black);">
+    <div style="max-width:1280px;margin:0 auto;padding:clamp(88px,12vw,150px) clamp(20px,5vw,56px);">
+      <div data-reveal style="margin-bottom:clamp(48px,7vw,80px);">
+        <p style="margin:0 0 18px;font-size:11px;letter-spacing:0.28em;text-transform:uppercase;color:var(--taupe);">Kolekcija</p>
+        <h2 style="margin:0;font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(34px,4.5vw,54px);line-height:1.1;color:var(--ivory);">Kvapai</h2>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:clamp(28px,4vw,56px);align-items:end;">
+
+        <!-- Product unit · Room No. 1 · accent: sage -->
+        <article data-product data-reveal data-screen-label="Produktas Room No. 1" style="display:flex;flex-direction:column;">
+          <p aria-hidden="true" style="margin:0 0 20px;font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(58px,7vw,104px);line-height:1;color:var(--sage);opacity:0.85;">No. 1</p>
+          <a href="#" aria-label="Room No. 1 — Fresh &amp; Pure. Peržiūrėti produktą" data-product-card style="display:block;background:var(--sand);color:var(--espresso);text-decoration:none;border-top:2px solid var(--sage);box-shadow:0 0 34px rgba(140,154,130,0.22);transition:transform 400ms ease, box-shadow 400ms ease;" style-hover="transform:translateY(-6px);box-shadow:0 0 52px rgba(140,154,130,0.4)">
+            <div data-card-img role="img" aria-label="Produkto nuotrauka: Room No. 1 lazdelių difuzorius stikliniame inde su natūraliomis lazdelėmis" style="aspect-ratio:4/5;background-color:#DCCFBA;background-image:repeating-linear-gradient(135deg, rgba(44,39,35,0.07) 0px, rgba(44,39,35,0.07) 1px, transparent 1px, transparent 14px);display:flex;align-items:flex-end;padding:16px;box-sizing:border-box;">
+              <span data-card-muted aria-hidden="true" style="font-family:ui-monospace,'SF Mono',monospace;font-size:11px;color:var(--muted-on-light);">[ foto: produkto kadras ]</span>
+            </div>
+            <div style="padding:clamp(24px,3vw,36px) clamp(24px,3vw,36px) clamp(28px,3vw,40px);display:flex;flex-direction:column;gap:14px;">
+              <p style="margin:0;font-size:11px;letter-spacing:0.24em;text-transform:uppercase;color:var(--sage);">No. 1</p>
+              <h3 style="margin:0;font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(26px,3vw,34px);line-height:1.1;">Room No. 1</h3>
+              <p data-card-muted style="margin:0;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:18px;color:var(--muted-on-light);">Fresh &amp; Pure</p>
+              <span aria-hidden="true" style="display:block;width:36px;height:2px;background:var(--sage);"></span>
+              <p style="margin:0;font-size:15px;line-height:1.7;text-wrap:pretty;">Gaivus, švarus ir lengvai elegantiškas namų kvapas — bergamotės ir baltojo šalavijo gaiva, jazmino ir rožės širdis, šiltas pušies bei ambros pagrindas.</p>
+              <span data-card-btn style="align-self:flex-start;margin-top:10px;display:inline-block;border:1px solid var(--espresso);color:var(--espresso);padding:13px 34px;font-size:12px;letter-spacing:0.18em;text-transform:uppercase;transition:background 350ms ease, color 350ms ease;" style-hover="background:var(--espresso);color:var(--ivory)">Pirkti</span>
+            </div>
+          </a>
+        </article>
+
+        <!-- Product unit · Room No. 2 · accent: amber -->
+        <article data-product data-reveal data-screen-label="Produktas Room No. 2" style="display:flex;flex-direction:column;">
+          <p aria-hidden="true" style="margin:0 0 20px;font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(58px,7vw,104px);line-height:1;color:var(--amber);opacity:0.85;">No. 2</p>
+          <a href="#" aria-label="Room No. 2 — Aromatic Oriental. Peržiūrėti produktą" data-product-card style="display:block;background:var(--sand);color:var(--espresso);text-decoration:none;border-top:2px solid var(--amber);box-shadow:0 0 34px rgba(185,138,94,0.22);transition:transform 400ms ease, box-shadow 400ms ease;" style-hover="transform:translateY(-6px);box-shadow:0 0 52px rgba(185,138,94,0.4)">
+            <div data-card-img role="img" aria-label="Produkto nuotrauka: Room No. 2 lazdelių difuzorius tamsaus stiklo inde su natūraliomis lazdelėmis" style="aspect-ratio:4/5;background-color:#DCCFBA;background-image:repeating-linear-gradient(135deg, rgba(44,39,35,0.07) 0px, rgba(44,39,35,0.07) 1px, transparent 1px, transparent 14px);display:flex;align-items:flex-end;padding:16px;box-sizing:border-box;">
+              <span data-card-muted aria-hidden="true" style="font-family:ui-monospace,'SF Mono',monospace;font-size:11px;color:var(--muted-on-light);">[ foto: produkto kadras ]</span>
+            </div>
+            <div style="padding:clamp(24px,3vw,36px) clamp(24px,3vw,36px) clamp(28px,3vw,40px);display:flex;flex-direction:column;gap:14px;">
+              <p style="margin:0;font-size:11px;letter-spacing:0.24em;text-transform:uppercase;color:var(--amber);">No. 2</p>
+              <h3 style="margin:0;font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(26px,3vw,34px);line-height:1.1;">Room No. 2</h3>
+              <p data-card-muted style="margin:0;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:18px;color:var(--muted-on-light);">Aromatic Oriental</p>
+              <span aria-hidden="true" style="display:block;width:36px;height:2px;background:var(--amber);"></span>
+              <p style="margin:0;font-size:15px;line-height:1.7;text-wrap:pretty;">Aromatingas ir rytietiškai šiltas namų kvapas — žvaigždinio anyžiaus ir levandos natos, kreminė vanilė, gili tonka pupelių ir muskuso bazė.</p>
+              <span data-card-btn style="align-self:flex-start;margin-top:10px;display:inline-block;border:1px solid var(--espresso);color:var(--espresso);padding:13px 34px;font-size:12px;letter-spacing:0.18em;text-transform:uppercase;transition:background 350ms ease, color 350ms ease;" style-hover="background:var(--espresso);color:var(--ivory)">Pirkti</span>
+            </div>
+          </a>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SCENT NOTES (ivory) — one column per product, repeatable ============ -->
+  <section data-screen-label="Kvapo natos" style="background:var(--ivory);">
+    <div style="max-width:1080px;margin:0 auto;padding:clamp(88px,12vw,150px) clamp(20px,5vw,56px);">
+      <div data-reveal style="text-align:center;margin-bottom:clamp(48px,7vw,80px);">
+        <p style="margin:0 0 18px;font-size:11px;letter-spacing:0.28em;text-transform:uppercase;color:var(--muted-on-light);">Kompozicija</p>
+        <h2 style="margin:0;font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(34px,4.5vw,54px);line-height:1.1;color:var(--espresso);">Kvapo natos</h2>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:clamp(48px,6vw,88px);">
+
+        <!-- Notes column · Room No. 1 -->
+        <div data-reveal style="text-align:center;">
+          <span aria-hidden="true" style="display:block;width:36px;height:2px;background:var(--sage);margin:0 auto 20px;"></span>
+          <h3 style="margin:0 0 8px;font-family:'Cormorant Garamond',serif;font-weight:500;font-size:26px;color:var(--espresso);">Room No. 1</h3>
+          <dl style="margin:0;">
+            <div style="width:72%;margin:0 auto;padding:20px 0 18px;">
+              <dt style="font-size:10px;letter-spacing:0.24em;text-transform:uppercase;color:var(--muted-on-light);margin-bottom:8px;">Viršutinės natos</dt>
+              <dd style="margin:0;font-family:'Cormorant Garamond',serif;font-size:19px;color:var(--espresso);">Bergamotė · baltasis šalavijas</dd>
+            </div>
+            <div style="width:86%;margin:0 auto;padding:18px 0;border-top:1px solid var(--hairline-light);">
+              <dt style="font-size:10px;letter-spacing:0.24em;text-transform:uppercase;color:var(--muted-on-light);margin-bottom:8px;">Širdies natos</dt>
+              <dd style="margin:0;font-family:'Cormorant Garamond',serif;font-size:19px;color:var(--espresso);">Jazminas · rožė · jūros druska</dd>
+            </div>
+            <div style="width:100%;margin:0 auto;padding:18px 0 0;border-top:1px solid var(--hairline-light);">
+              <dt style="font-size:10px;letter-spacing:0.24em;text-transform:uppercase;color:var(--muted-on-light);margin-bottom:8px;">Bazinės natos</dt>
+              <dd style="margin:0;font-family:'Cormorant Garamond',serif;font-size:19px;color:var(--espresso);">Pušis · muskusas · ambra</dd>
+            </div>
+          </dl>
+        </div>
+
+        <!-- Notes column · Room No. 2 -->
+        <div data-reveal style="text-align:center;">
+          <span aria-hidden="true" style="display:block;width:36px;height:2px;background:var(--amber);margin:0 auto 20px;"></span>
+          <h3 style="margin:0 0 8px;font-family:'Cormorant Garamond',serif;font-weight:500;font-size:26px;color:var(--espresso);">Room No. 2</h3>
+          <dl style="margin:0;">
+            <div style="width:72%;margin:0 auto;padding:20px 0 18px;">
+              <dt style="font-size:10px;letter-spacing:0.24em;text-transform:uppercase;color:var(--muted-on-light);margin-bottom:8px;">Viršutinės natos</dt>
+              <dd style="margin:0;font-family:'Cormorant Garamond',serif;font-size:19px;color:var(--espresso);">Žvaigždinis anyžius · levanda</dd>
+            </div>
+            <div style="width:86%;margin:0 auto;padding:18px 0;border-top:1px solid var(--hairline-light);">
+              <dt style="font-size:10px;letter-spacing:0.24em;text-transform:uppercase;color:var(--muted-on-light);margin-bottom:8px;">Širdies natos</dt>
+              <dd style="margin:0;font-family:'Cormorant Garamond',serif;font-size:19px;color:var(--espresso);">Medvilnė · kipriolė · vanilė</dd>
+            </div>
+            <div style="width:100%;margin:0 auto;padding:18px 0 0;border-top:1px solid var(--hairline-light);">
+              <dt style="font-size:10px;letter-spacing:0.24em;text-transform:uppercase;color:var(--muted-on-light);margin-bottom:8px;">Bazinės natos</dt>
+              <dd style="margin:0;font-family:'Cormorant Garamond',serif;font-size:19px;color:var(--espresso);">Tonka pupelės · baltasis muskusas · rytietiškas akordas</dd>
+            </div>
+          </dl>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ WHY FENNARY (dark) ============ -->
+  <section data-screen-label="Kodėl FENNARY" style="background:var(--near-black);border-top:1px solid var(--hairline-dark);">
+    <div style="max-width:1080px;margin:0 auto;padding:clamp(88px,12vw,150px) clamp(20px,5vw,56px);text-align:center;">
+      <h2 data-reveal style="margin:0 0 clamp(48px,7vw,72px);font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(30px,4vw,44px);color:var(--ivory);">Kodėl FENNARY</h2>
+      <div data-reveal style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:clamp(40px,5vw,64px);">
+        <div style="display:flex;flex-direction:column;align-items:center;gap:20px;">
+          <svg width="44" height="44" viewBox="0 0 48 48" fill="none" stroke="var(--sage)" stroke-width="1" aria-hidden="true"><circle cx="24" cy="24" r="15"></circle><circle cx="24" cy="24" r="4"></circle></svg>
+          <h3 style="margin:0;font-family:'Cormorant Garamond',serif;font-weight:500;font-size:22px;color:var(--ivory);">Natūralios sudėtys</h3>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:20px;">
+          <svg width="44" height="44" viewBox="0 0 48 48" fill="none" stroke="var(--amber)" stroke-width="1" stroke-linecap="round" aria-hidden="true"><circle cx="24" cy="24" r="15"></circle><line x1="24" y1="24" x2="24" y2="14"></line><line x1="24" y1="24" x2="31" y2="28"></line></svg>
+          <h3 style="margin:0;font-family:'Cormorant Garamond',serif;font-weight:500;font-size:22px;color:var(--ivory);">Ilgai išliekantis aromatas</h3>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:20px;">
+          <svg width="44" height="44" viewBox="0 0 48 48" fill="none" stroke="var(--taupe)" stroke-width="1" aria-hidden="true"><rect x="14" y="14" width="20" height="20" transform="rotate(45 24 24)"></rect></svg>
+          <h3 style="margin:0;font-family:'Cormorant Garamond',serif;font-weight:500;font-size:22px;color:var(--ivory);">Tinka bet kuriai erdvei</h3>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ LIFESTYLE IMAGE (full-bleed) ============ -->
+  <section data-screen-label="Gyvenimo būdo nuotrauka">
+    <figure style="margin:0;">
+      <div role="img" aria-label="Plati atmosferinė nuotrauka: FENNARY difuzorius jaukioje svetainėje, minkšta natūrali šviesa" style="height:clamp(320px,55vh,560px);background-color:#241F18;background-image:repeating-linear-gradient(135deg, rgba(246,241,233,0.045) 0px, rgba(246,241,233,0.045) 1px, transparent 1px, transparent 16px);display:flex;align-items:flex-end;justify-content:flex-end;padding:16px 20px;box-sizing:border-box;">
+        <span aria-hidden="true" style="font-family:ui-monospace,'SF Mono',monospace;font-size:11px;color:rgba(195,181,160,0.55);">[ foto: platus interjero kadras ]</span>
+      </div>
+      <figcaption style="background:var(--near-black);color:var(--taupe);border-top:1px solid var(--hairline-dark);padding:20px clamp(20px,5vw,56px);text-align:center;font-size:13px;letter-spacing:0.08em;">Svetainei, miegamajam, vonios kambariui ar darbo erdvei.</figcaption>
+    </figure>
+  </section>
+
+  <!-- ============ NEWSLETTER (sand) — visual only, wire to Mailchimp/WooCommerce later ============ -->
+  <section data-screen-label="Naujienlaiškis" style="background:var(--sand);">
+    <div data-reveal style="max-width:560px;margin:0 auto;padding:clamp(72px,10vw,120px) clamp(20px,5vw,56px);text-align:center;">
+      <h2 style="margin:0 0 14px;font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(28px,3.6vw,40px);color:var(--espresso);">Prisijunkite prie FENNARY</h2>
+      <p style="margin:0 0 32px;font-size:15px;line-height:1.7;color:var(--muted-on-light);">Gaukite 10% nuolaidą pirmam užsakymui.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center;">
+        <input type="email" aria-label="El. pašto adresas" placeholder="El. paštas" style="flex:1;min-width:220px;box-sizing:border-box;background:var(--ivory);border:1px solid rgba(44,39,35,0.25);padding:15px 18px;font-family:'Inter',sans-serif;font-size:14px;color:var(--espresso);transition:border-color 300ms ease;" style-focus="border-color:var(--espresso)">
+        <button type="button" style="background:var(--near-black);color:var(--ivory);border:0;padding:15px 34px;font-family:'Inter',sans-serif;font-size:12px;letter-spacing:0.18em;text-transform:uppercase;cursor:pointer;transition:background 350ms ease;" style-hover="background:var(--espresso)">Prenumeruoti</button>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ============ FOOTER (WooCommerce: footer.php) ============ -->
+<footer id="kontaktai" data-screen-label="Poraštė" style="background:var(--near-black);color:var(--taupe);">
+  <div style="max-width:1280px;margin:0 auto;padding:clamp(64px,9vw,110px) clamp(20px,5vw,56px) 40px;">
+    <div style="display:flex;flex-direction:column;align-items:center;gap:36px;text-align:center;">
+      <p style="margin:0;font-family:'Cormorant Garamond',serif;font-weight:500;font-size:22px;letter-spacing:0.34em;color:var(--ivory);padding-left:0.34em;">FENNARY</p>
+      <nav aria-label="Poraštės nuorodos" style="display:flex;flex-wrap:wrap;gap:clamp(18px,3vw,36px);justify-content:center;">
+        <a href="#" style="font-size:12px;letter-spacing:0.1em;color:var(--taupe);text-decoration:none;transition:color 300ms ease;" style-hover="color:var(--ivory)">Apie mus</a>
+        <a href="#" style="font-size:12px;letter-spacing:0.1em;color:var(--taupe);text-decoration:none;transition:color 300ms ease;" style-hover="color:var(--ivory)">Pristatymas ir grąžinimas</a>
+        <a href="#" style="font-size:12px;letter-spacing:0.1em;color:var(--taupe);text-decoration:none;transition:color 300ms ease;" style-hover="color:var(--ivory)">D.U.K.</a>
+        <a href="#" style="font-size:12px;letter-spacing:0.1em;color:var(--taupe);text-decoration:none;transition:color 300ms ease;" style-hover="color:var(--ivory)">Privatumo politika</a>
+        <a href="#" style="font-size:12px;letter-spacing:0.1em;color:var(--taupe);text-decoration:none;transition:color 300ms ease;" style-hover="color:var(--ivory)">Kontaktai</a>
+      </nav>
+    </div>
+    <div style="margin-top:clamp(48px,6vw,72px);padding-top:24px;border-top:1px solid var(--hairline-dark);display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;align-items:center;">
+      <a href="#" style="font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:var(--taupe);text-decoration:none;transition:color 300ms ease;" style-hover="color:var(--ivory)">Instagram</a>
+      <p style="margin:0;font-size:12px;letter-spacing:0.06em;color:var(--taupe);">© FENNARY 2026</p>
+    </div>
+  </div>
+</footer>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{
+  &quot;heroOverlay&quot;: {&quot;editor&quot;: &quot;range&quot;, &quot;default&quot;: 0.55, &quot;min&quot;: 0.2, &quot;max&quot;: 0.85, &quot;step&quot;: 0.05, &quot;tsType&quot;: &quot;number&quot;, &quot;section&quot;: &quot;Hero&quot;},
+  &quot;cardStyle&quot;: {&quot;editor&quot;: &quot;enum&quot;, &quot;options&quot;: [&quot;sand&quot;, &quot;dark&quot;], &quot;default&quot;: &quot;sand&quot;, &quot;tsType&quot;: &quot;'sand' | 'dark'&quot;, &quot;section&quot;: &quot;Produktai&quot;},
+  &quot;animations&quot;: {&quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: true, &quot;tsType&quot;: &quot;boolean&quot;, &quot;section&quot;: &quot;Judesys&quot;}
+}">
+class Component extends DCLogic {
+  componentDidMount() {
+    this._applyTweaks();
+    this._initHeader();
+    this._initReveals();
+  }
+
+  componentDidUpdate() {
+    this._applyTweaks();
+  }
+
+  componentWillUnmount() {
+    if (this._onScroll) window.removeEventListener('scroll', this._onScroll);
+    if (this._io) this._io.disconnect();
+  }
+
+  // Apply tweak props (hero overlay strength, card treatment) via direct style updates
+  _applyTweaks() {
+    const overlay = document.querySelector('[data-hero-overlay]');
+    if (overlay) overlay.style.opacity = String(this.props.heroOverlay ?? 0.55);
+
+    const dark = (this.props.cardStyle ?? 'sand') === 'dark';
+    document.querySelectorAll('[data-product-card]').forEach((card) => {
+      card.style.background = dark ? '#221D16' : '#E5DAC9';
+      card.style.color = dark ? '#F6F1E9' : '#2C2723';
+      card.querySelectorAll('[data-card-muted]').forEach((el) => {
+        el.style.color = dark ? '#C3B5A0' : '#6E6152';
+      });
+      const img = card.querySelector('[data-card-img]');
+      if (img) {
+        img.style.backgroundColor = dark ? '#2A241B' : '#DCCFBA';
+        img.style.backgroundImage = dark
+          ? 'repeating-linear-gradient(135deg, rgba(246,241,233,0.05) 0px, rgba(246,241,233,0.05) 1px, transparent 1px, transparent 14px)'
+          : 'repeating-linear-gradient(135deg, rgba(44,39,35,0.07) 0px, rgba(44,39,35,0.07) 1px, transparent 1px, transparent 14px)';
+      }
+      const btn = card.querySelector('[data-card-btn]');
+      if (btn) {
+        btn.style.borderColor = dark ? 'rgba(246,241,233,0.55)' : '#2C2723';
+        btn.style.color = dark ? '#F6F1E9' : '#2C2723';
+      }
+    });
+  }
+
+  // Sticky header: shrinks and deepens slightly on scroll
+  _initHeader() {
+    const header = document.querySelector('[data-site-header]');
+    const inner = document.querySelector('[data-header-inner]');
+    if (!header || !inner) return;
+    const onScroll = () => {
+      const y = window.scrollY || document.documentElement.scrollTop || 0;
+      const s = y > 30;
+      inner.style.paddingTop = s ? '12px' : '22px';
+      inner.style.paddingBottom = s ? '12px' : '22px';
+      header.style.background = s ? 'rgba(23,20,15,0.93)' : 'rgba(23,20,15,1)';
+      header.style.boxShadow = s ? '0 8px 30px rgba(0,0,0,0.35)' : 'none';
+    };
+    this._onScroll = onScroll;
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  }
+
+  // Slow fade-up reveals on scroll; respects reduced motion and the animations tweak
+  _initReveals() {
+    if (this.props.animations === false) return;
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const els = Array.from(document.querySelectorAll('[data-reveal]'));
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          e.target.style.opacity = '1';
+          e.target.style.transform = 'translateY(0)';
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    this._io = io;
+    els.forEach((el) => {
+      const r = el.getBoundingClientRect();
+      if (r.top > window.innerHeight * 0.85) {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(22px)';
+        el.style.transition = 'opacity 450ms ease, transform 550ms ease';
+        io.observe(el);
+      }
+    });
+  }
+
+  renderVals() {
+    return {};
+  }
+}
+</script>
+</body>
+</html>
