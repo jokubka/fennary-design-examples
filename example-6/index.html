@@ -82,7 +82,7 @@
       <span style="display:block;width:20px;height:1px;background:var(--color-charcoal)"></span>
     </button>
     <!-- centered wordmark -->
-    <a href="#" aria-label="FENNARY — pradžia" style="grid-column:2;font-family:var(--font-display);font-size:22px;font-weight:500;letter-spacing:.42em;text-indent:.42em;white-space:nowrap">FENNARY</a>
+    <a href="#" aria-label="FENNARY — pradžia" style="grid-column:2;justify-self:center;display:inline-flex;align-items:center;line-height:0"><img src="./uploads/Fennary.png" alt="FENNARY" style="height:22px;width:auto;display:block;mix-blend-mode:multiply"></a>
     <!-- utilities -->
     <div style="grid-column:3;display:flex;gap:22px;align-items:center;justify-content:flex-end">
       <div data-mq="utils-desktop" style="display:flex;gap:22px;align-items:center">
@@ -113,11 +113,9 @@
           <a href="#apie" style="display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding-inline:24px;background:transparent;color:var(--color-charcoal);border:1px solid var(--color-charcoal);border-radius:var(--radius-small);font-size:12px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;transition:background 250ms ease" style-hover="background:rgba(36,33,30,.06);color:var(--color-charcoal)">Susipažinti</a>
         </div>
       </div>
-      <!-- hero product image placeholder -->
+      <!-- hero product image -->
       <div data-reveal="true" style="display:flex;justify-content:center;align-items:flex-end;min-height:clamp(380px,44vw,540px)">
-        <div role="img" aria-label="Skulptūriškas FENNARY difuzoriaus buteliukas su lazdelėmis, difuzinė šviesa, neutralus fonas" style="width:min(320px,72%);aspect-ratio:3/4.6;border-radius:var(--radius-medium);border:1px solid var(--color-line);background:repeating-linear-gradient(-45deg,rgba(36,33,30,.045) 0 1px,transparent 1px 9px),linear-gradient(160deg,#efe9df 0%,#e3dbcf 100%);box-shadow:var(--shadow-soft);display:flex;align-items:center;justify-content:center;transition:transform 300ms ease" style-hover="transform:scale(1.02)">
-          <span style="font-family:ui-monospace,Menlo,monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--color-taupe);text-align:center;padding:0 20px;line-height:1.8">produkto nuotrauka —<br />skulptūriškas buteliukas</span>
-        </div>
+        <img src="./images/hero-collection.webp" width="1023" height="1537" alt="Du FENNARY namų kvapų difuzoriai — Room No. 1 ir Room No. 2 — ant šviesaus akmens pagrindo" fetchpriority="high" decoding="async" style="display:block;width:min(320px,72%);height:auto;aspect-ratio:3/4.6;object-fit:cover;object-position:center;border-radius:var(--radius-medium);border:1px solid var(--color-line);box-shadow:var(--shadow-soft);transition:transform 300ms ease" style-hover="transform:scale(1.02)" />
       </div>
     </div>
   </section>
@@ -140,9 +138,7 @@
   <section id="kvapai" aria-label="Kvapai" data-screen-label="Room No. 1" style="background:var(--color-soft-white);padding-block:clamp(36px,5vw,60px)">
     <article data-reveal="true" style="max-width:var(--container-max);margin-inline:auto;padding-inline:clamp(14px,3vw,20px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,440px),1fr));gap:clamp(32px,5vw,72px);align-items:center">
       <!-- product visual — image LEFT -->
-      <div role="img" aria-label="Room No. 1 difuzorius šviesioje erdvėje, vėsi dienos šviesa, švelnus šalavijo atspalvis" style="min-height:clamp(420px,42vw,560px);border-radius:var(--radius-medium);border:1px solid var(--color-line);background:repeating-linear-gradient(-45deg,rgba(137,146,134,.08) 0 1px,transparent 1px 9px),linear-gradient(165deg,#e9ece6 0%,#d3d9d0 60%,#c5ccc2 100%);display:flex;align-items:center;justify-content:center;transition:transform 300ms ease" style-hover="transform:scale(1.015)">
-        <span style="font-family:ui-monospace,Menlo,monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--color-taupe);text-align:center;line-height:1.8;padding:0 20px">produkto nuotrauka —<br />Room No. 1, dienos šviesa</span>
-      </div>
+      <img src="./images/room-no-1.webp" width="1254" height="1254" alt="FENNARY Room No. 1 difuzorius šviesiame akmens interjere, apšviestas vėsia dienos šviesa" loading="lazy" decoding="async" style="display:block;width:100%;height:clamp(420px,42vw,560px);object-fit:cover;object-position:center;border-radius:var(--radius-medium);border:1px solid var(--color-line);transition:transform 300ms ease" style-hover="transform:scale(1.015)" />
       <!-- product story -->
       <div style="display:flex;flex-direction:column;gap:18px;align-items:flex-start;max-width:520px">
         <p style="margin:0;font-size:11px;font-weight:600;letter-spacing:.28em;text-transform:uppercase;color:var(--color-room-one)">Room No. 1</p>
@@ -184,9 +180,7 @@
         <a href="#" style="margin-top:10px;display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding-inline:24px;background:var(--color-charcoal);color:var(--color-ivory);border:1px solid var(--color-charcoal);border-radius:var(--radius-small);font-size:12px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;transition:transform 250ms ease,box-shadow 250ms ease" style-hover="transform:translateY(-2px);box-shadow:var(--shadow-hover);color:var(--color-ivory)">Pasirinkti Room No. 2</a>
       </div>
       <!-- product visual — image RIGHT -->
-      <div role="img" aria-label="Room No. 2 difuzorius jaukioje vakaro šviesoje, šiltas gintarinis atspalvis" style="min-height:clamp(420px,42vw,560px);border-radius:var(--radius-medium);border:1px solid var(--color-line);background:repeating-linear-gradient(-45deg,rgba(136,96,76,.08) 0 1px,transparent 1px 9px),linear-gradient(165deg,#e4d6cb 0%,#cbb2a0 60%,#b39481 100%);display:flex;align-items:center;justify-content:center;transition:transform 300ms ease" style-hover="transform:scale(1.015)">
-        <span style="font-family:ui-monospace,Menlo,monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#5f4636;text-align:center;line-height:1.8;padding:0 20px">produkto nuotrauka —<br />Room No. 2, vakaro šviesa</span>
-      </div>
+      <img src="./images/room-no-2.webp" width="1254" height="1254" alt="FENNARY Room No. 2 difuzorius jaukiame interjere, apšviestas šilta vakaro šviesa" loading="lazy" decoding="async" style="display:block;width:100%;height:clamp(420px,42vw,560px);object-fit:cover;object-position:center;border-radius:var(--radius-medium);border:1px solid var(--color-line);transition:transform 300ms ease" style-hover="transform:scale(1.015)" />
     </article>
   </section>
 
@@ -602,7 +596,7 @@
   <div style="max-width:var(--container-max);margin-inline:auto;padding-inline:clamp(14px,3vw,20px);display:flex;flex-direction:column;gap:clamp(44px,6vw,72px)">
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:clamp(32px,4vw,56px)">
       <div style="display:flex;flex-direction:column;gap:18px;max-width:320px">
-        <p style="margin:0;font-family:var(--font-display);font-size:20px;letter-spacing:.42em;text-indent:.42em">FENNARY</p>
+        <img src="./uploads/Fennary.png" alt="FENNARY" style="height:20px;width:auto;display:block;filter:invert(1);mix-blend-mode:screen">
         <p style="margin:0;font-size:14px;line-height:1.7;color:#C9C1B8">Rankomis pilstomi namų kvapai, kuriami Lietuvoje — erdvei, kurioje gera būti.</p>
       </div>
       <nav aria-label="Informacija" style="display:flex;flex-direction:column;gap:14px">

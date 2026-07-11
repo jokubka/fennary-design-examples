@@ -98,7 +98,7 @@ designs.forEach((design, index) => {
 
   preview.className = "design-preview";
   image.className = "design-image";
-  image.src = `${design.directory}/.thumbnail`;
+  image.src = `${design.directory}/.thumbnail?v=20260711-images`;
   image.alt = `${design.title} homepage preview`;
   image.loading = index > 2 ? "lazy" : "eager";
   image.decoding = "async";

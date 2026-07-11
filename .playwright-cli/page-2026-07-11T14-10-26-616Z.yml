@@ -1,0 +1,105 @@
+- generic [ref=e4]:
+  - generic [ref=e5]: Nemokamas pristatymas Lietuvoje nuo 60 €
+  - banner [ref=e6]:
+    - navigation [ref=e7]:
+      - link "Kvapai" [ref=e8] [cursor=pointer]:
+        - /url: "#kvapai"
+      - link "Apie" [ref=e9] [cursor=pointer]:
+        - /url: "#apie"
+      - link "Kontaktai" [ref=e10] [cursor=pointer]:
+        - /url: "#kontaktai"
+    - img "Fennary" [ref=e11]
+    - generic [ref=e12]:
+      - link "Paieška" [ref=e13] [cursor=pointer]:
+        - /url: "#paieska"
+      - link "Krepšelis (0)" [ref=e14] [cursor=pointer]:
+        - /url: "#krepselis"
+  - generic [ref=e15]:
+    - generic [ref=e16]:
+      - generic [ref=e17]: Nendrių difuzoriai moderniems namams
+      - heading "Du kvapai. Nieko nereikalingo." [level=1] [ref=e18]:
+        - text: Du kvapai.
+        - text: Nieko nereikalingo.
+      - paragraph [ref=e19]: Fennary kuria ilgai išliekančius namų kvapus — be atviros liepsnos, be pertekliaus. Vienas difuzorius kvepia iki dešimties savaičių.
+      - generic [ref=e20]:
+        - link "Peržiūrėti kvapus" [ref=e21] [cursor=pointer]:
+          - /url: "#kvapai"
+        - generic [ref=e22]: 49 € / 100 ml
+    - img "Difuzoriaus nuotrauka interjere" [ref=e24]
+  - generic [ref=e25]:
+    - generic [ref=e26]:
+      - heading "Kvapai" [level=2] [ref=e27]
+      - generic [ref=e28]: Kolekcija — du kvapai
+    - generic [ref=e29]:
+      - generic [ref=e30]:
+        - img "1 produkto nuotrauka" [ref=e32]
+        - generic [ref=e33]:
+          - generic [ref=e34]:
+            - generic [ref=e35]: Nr. 01
+            - generic [ref=e36]: 49 €
+          - heading "Figa ir kedras" [level=3] [ref=e37]
+          - paragraph [ref=e38]: Šiltas, medienos tonų kvapas ramiai erdvei. Pavadinimą ir aprašymą pakeisime pagal jūsų tekstą.
+          - generic [ref=e39]:
+            - generic [ref=e40]: 100 ml · iki 10 savaičių
+            - link "Į krepšelį" [ref=e41] [cursor=pointer]:
+              - /url: "#krepselis"
+      - generic [ref=e42]:
+        - img "2 produkto nuotrauka" [ref=e44]
+        - generic [ref=e45]:
+          - generic [ref=e46]:
+            - generic [ref=e47]: Nr. 02
+            - generic [ref=e48]: 49 €
+          - heading "Ambra ir šalavijas" [level=3] [ref=e49]
+          - paragraph [ref=e50]: Gaivus, žolynų tonų kvapas šviesiems namams. Pavadinimą ir aprašymą pakeisime pagal jūsų tekstą.
+          - generic [ref=e51]:
+            - generic [ref=e52]: 100 ml · iki 10 savaičių
+            - link "Į krepšelį" [ref=e53] [cursor=pointer]:
+              - /url: "#krepselis"
+  - generic [ref=e54]:
+    - generic [ref=e55]: Apie Fennary
+    - paragraph [ref=e56]: "Kvapas — tyli interjero dalis. Todėl kuriame tik tiek, kiek galime padaryti nepriekaištingai: du kvapus, kuriuos norisi laikyti matomoje vietoje."
+  - generic [ref=e57]:
+    - generic [ref=e58]:
+      - generic [ref=e59]: "01"
+      - heading "Įstatykite nendreles" [level=3] [ref=e60]
+      - paragraph [ref=e61]: Atidarykite buteliuką ir įstatykite nendreles — kvapas pradės sklisti per kelias valandas.
+    - generic [ref=e62]:
+      - generic [ref=e63]: "02"
+      - heading "Apverskite kartą per savaitę" [level=3] [ref=e64]
+      - paragraph [ref=e65]: Norėdami intensyvesnio kvapo, apverskite nendreles. Rečiau — švelnesniam.
+    - generic [ref=e66]:
+      - generic [ref=e67]: "03"
+      - heading "Mėgaukitės iki 10 savaičių" [level=3] [ref=e68]
+      - paragraph [ref=e69]: Be liepsnos, be priežiūros. Kvapas tolygiai sklinda visą laiką.
+  - generic [ref=e70]:
+    - generic [ref=e71]:
+      - heading "Sužinokite pirmieji" [level=2] [ref=e72]
+      - paragraph [ref=e73]: Nauji kvapai ir pasiūlymai — retai, bet verta.
+    - generic [ref=e74]:
+      - textbox "Jūsų el. paštas" [ref=e75]
+      - button "Prenumeruoti →" [ref=e76] [cursor=pointer]
+  - contentinfo [ref=e77]:
+    - generic [ref=e78]:
+      - img "Fennary" [ref=e79]
+      - generic [ref=e80]:
+        - generic [ref=e81]:
+          - generic [ref=e82]: Parduotuvė
+          - link "Kvapai" [ref=e83] [cursor=pointer]:
+            - /url: "#kvapai"
+          - link "Apie mus" [ref=e84] [cursor=pointer]:
+            - /url: "#apie"
+        - generic [ref=e85]:
+          - generic [ref=e86]: Pagalba
+          - link "Pristatymas ir grąžinimas" [ref=e87] [cursor=pointer]:
+            - /url: "#pristatymas"
+          - link "DUK" [ref=e88] [cursor=pointer]:
+            - /url: "#duk"
+        - generic [ref=e89]:
+          - generic [ref=e90]: Kontaktai
+          - link "labas@fennary.lt" [ref=e91] [cursor=pointer]:
+            - /url: mailto:labas@fennary.lt
+          - link "Instagram" [ref=e92] [cursor=pointer]:
+            - /url: "#instagram"
+    - generic [ref=e93]:
+      - generic [ref=e94]: © 2026 Fennary. Visos teisės saugomos.
+      - generic [ref=e95]: Privatumo politika · Taisyklės

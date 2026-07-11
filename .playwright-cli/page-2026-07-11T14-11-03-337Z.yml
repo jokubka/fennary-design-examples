@@ -1,0 +1,132 @@
+- generic [ref=e3]:
+  - banner [ref=e4]:
+    - generic [ref=e5]:
+      - navigation "Pagrindinė navigacija" [ref=e6]:
+        - link "Pradžia" [ref=e7] [cursor=pointer]:
+          - /url: "#pradzia"
+        - link "Kvapai" [ref=e8] [cursor=pointer]:
+          - /url: "#kvapai"
+        - link "Apie" [ref=e9] [cursor=pointer]:
+          - /url: "#apie"
+        - link "Kontaktai" [ref=e10] [cursor=pointer]:
+          - /url: "#kontaktai"
+      - link "FENNARY" [ref=e11] [cursor=pointer]:
+        - /url: "#pradzia"
+        - img "FENNARY" [ref=e12]
+      - generic [ref=e13]:
+        - button "Paieška" [ref=e14] [cursor=pointer]:
+          - img [ref=e15]
+        - button "Krepšelis" [ref=e18] [cursor=pointer]:
+          - img [ref=e19]
+  - main [ref=e22]:
+    - generic [ref=e23]:
+      - 'img "Nuotrauka: FENNARY lazdelių difuzorius ant medinio staliuko prieblandoje, šilta vakaro šviesa" [ref=e24]'
+      - generic [ref=e28]:
+        - paragraph [ref=e29]: Rankų darbo namų kvapai
+        - heading "Namų kvapas, kuris tampa ritualu" [level=1] [ref=e30]
+        - paragraph [ref=e31]: FENNARY lazdelių difuzoriai — subtilūs, ilgai išliekantys, sukurti jūsų erdvei.
+        - generic [ref=e32]:
+          - link "Atrasti kvapus" [ref=e33] [cursor=pointer]:
+            - /url: "#kvapai"
+          - link "Sužinoti daugiau" [ref=e34] [cursor=pointer]:
+            - /url: "#apie"
+    - generic [ref=e36]:
+      - heading "Apie FENNARY" [level=2] [ref=e37]
+      - paragraph [ref=e38]: FENNARY gimė iš paprasto noro — kad namuose būtų gera būti. Kiekvienas difuzorius kuriamas nedideliais kiekiais, naudojant kruopščiai atrinktas kvapų kompozicijas, kurios lėtai ir tolygiai pripildo erdvę. Be dūmų, be liepsnos — tik tyras, harmoningas aromatas.
+    - generic [ref=e40]:
+      - generic [ref=e41]:
+        - paragraph [ref=e42]: Kolekcija
+        - heading "Kvapai" [level=2] [ref=e43]
+      - generic [ref=e44]:
+        - article [ref=e45]:
+          - paragraph [ref=e46]: No. 1
+          - link "Room No. 1 — Fresh & Pure. Peržiūrėti produktą" [ref=e47] [cursor=pointer]:
+            - /url: "#"
+            - 'img "Produkto nuotrauka: Room No. 1 lazdelių difuzorius skaidraus stiklo inde su natūraliomis lazdelėmis" [ref=e48]'
+            - generic [ref=e49]:
+              - paragraph [ref=e50]: No. 1
+              - heading "Room No. 1" [level=3] [ref=e51]
+              - paragraph [ref=e52]: Fresh & Pure
+              - paragraph [ref=e54]: Gaivus, švarus ir lengvai elegantiškas namų kvapas — bergamotės ir baltojo šalavijo gaiva, jazmino ir rožės širdis, šiltas pušies bei ambros pagrindas.
+              - generic [ref=e55]: Pirkti
+        - article [ref=e56]:
+          - paragraph [ref=e57]: No. 2
+          - link "Room No. 2 — Aromatic Oriental. Peržiūrėti produktą" [ref=e58] [cursor=pointer]:
+            - /url: "#"
+            - 'img "Produkto nuotrauka: Room No. 2 lazdelių difuzorius gintarinio stiklo inde su natūraliomis lazdelėmis" [ref=e59]'
+            - generic [ref=e60]:
+              - paragraph [ref=e61]: No. 2
+              - heading "Room No. 2" [level=3] [ref=e62]
+              - paragraph [ref=e63]: Aromatic Oriental
+              - paragraph [ref=e65]: Aromatingas ir rytietiškai šiltas namų kvapas — žvaigždinio anyžiaus ir levandos natos, kreminė vanilė, gili tonka pupelių ir muskuso bazė.
+              - generic [ref=e66]: Pirkti
+    - generic [ref=e68]:
+      - generic [ref=e69]:
+        - paragraph [ref=e70]: Kompozicija
+        - heading "Kvapo natos" [level=2] [ref=e71]
+      - generic [ref=e72]:
+        - generic [ref=e73]:
+          - heading "Room No. 1" [level=3] [ref=e75]
+          - generic [ref=e76]:
+            - generic [ref=e77]:
+              - term [ref=e78]: Viršutinės natos
+              - definition [ref=e79]: Bergamotė · baltasis šalavijas
+            - generic [ref=e80]:
+              - term [ref=e81]: Širdies natos
+              - definition [ref=e82]: Jazminas · rožė · jūros druska
+            - generic [ref=e83]:
+              - term [ref=e84]: Bazinės natos
+              - definition [ref=e85]: Pušis · muskusas · ambra
+        - generic [ref=e86]:
+          - heading "Room No. 2" [level=3] [ref=e88]
+          - generic [ref=e89]:
+            - generic [ref=e90]:
+              - term [ref=e91]: Viršutinės natos
+              - definition [ref=e92]: Žvaigždinis anyžius · levanda
+            - generic [ref=e93]:
+              - term [ref=e94]: Širdies natos
+              - definition [ref=e95]: Medvilnė · kipriolė · vanilė
+            - generic [ref=e96]:
+              - term [ref=e97]: Bazinės natos
+              - definition [ref=e98]: Tonka pupelės · baltasis muskusas · rytietiškas akordas
+    - generic [ref=e100]:
+      - heading "Kodėl FENNARY" [level=2] [ref=e101]
+      - generic [ref=e102]:
+        - generic [ref=e103]:
+          - img [ref=e104]
+          - heading "Natūralios sudėtys" [level=3] [ref=e107]
+        - generic [ref=e108]:
+          - img [ref=e109]
+          - heading "Ilgai išliekantis aromatas" [level=3] [ref=e112]
+        - generic [ref=e113]:
+          - img [ref=e114]
+          - heading "Tinka bet kuriai erdvei" [level=3] [ref=e116]
+    - figure "Svetainei, miegamajam, vonios kambariui ar darbo erdvei." [ref=e118]:
+      - 'img "Plati atmosferinė nuotrauka: FENNARY difuzorius jaukioje svetainėje, minkšta natūrali šviesa" [ref=e119]'
+      - generic [ref=e120]: Svetainei, miegamajam, vonios kambariui ar darbo erdvei.
+    - generic [ref=e122]:
+      - heading "Prisijunkite prie FENNARY" [level=2] [ref=e123]
+      - paragraph [ref=e124]: Gaukite 10% nuolaidą pirmam užsakymui.
+      - generic [ref=e125]:
+        - textbox "El. pašto adresas" [ref=e126]:
+          - /placeholder: El. paštas
+        - button "Prenumeruoti" [ref=e127] [cursor=pointer]
+  - contentinfo [ref=e128]:
+    - generic [ref=e129]:
+      - generic [ref=e130]:
+        - img "FENNARY" [ref=e131]
+        - navigation "Poraštės nuorodos" [ref=e132]:
+          - link "Apie mus" [ref=e133] [cursor=pointer]:
+            - /url: "#"
+          - link "Pristatymas ir grąžinimas" [ref=e134] [cursor=pointer]:
+            - /url: "#"
+          - link "D.U.K." [ref=e135] [cursor=pointer]:
+            - /url: "#"
+          - link "Privatumo politika" [ref=e136] [cursor=pointer]:
+            - /url: "#"
+          - link "Kontaktai" [ref=e137] [cursor=pointer]:
+            - /url: "#"
+      - generic [ref=e138]:
+        - link "Instagram" [ref=e139] [cursor=pointer]:
+          - /url: "#"
+        - paragraph [ref=e140]: © FENNARY 2026

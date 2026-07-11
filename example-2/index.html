@@ -34,7 +34,7 @@
       <a href="#kvapai" style="color: #2B2A26; font-size: 14px; letter-spacing: 0.08em; text-decoration: none" style-hover="color: #A98E63; text-decoration: underline; text-underline-offset: 5px">Kvapai</a>
       <a href="#apie" style="color: #2B2A26; font-size: 14px; letter-spacing: 0.08em; text-decoration: none" style-hover="color: #A98E63; text-decoration: underline; text-underline-offset: 5px">Apie mus</a>
     </nav>
-    <div style="font-family: 'Cormorant Garamond', serif; font-weight: 500; font-size: clamp(19px, 2vw, 24px); letter-spacing: 0.3em; text-indent: 0.3em; text-align: center">FENNARY</div>
+    <a href="#" aria-label="FENNARY — pradžia" style="justify-self: center; display: inline-flex; align-items: center; line-height: 0"><img src="./uploads/Fennary.png" alt="FENNARY" style="height: 24px; width: auto; display: block; mix-blend-mode: multiply"></a>
     <div style="display: flex; gap: 22px; justify-content: flex-end; align-items: center">
       <a href="#" aria-label="Paieška" style="display: flex; color: #2B2A26" style-hover="color: #A98E63">
         <svg width="19" height="19" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="8.5" cy="8.5" r="6"></circle><line x1="13" y1="13" x2="18" y2="18"></line></svg>
@@ -47,8 +47,9 @@
 
   <!-- 3. Hero -->
   <sc-if value="{{ heroOverlay }}" hint-placeholder-val="{{ true }}">
-    <section style="position: relative; min-height: clamp(480px, 62vw, 660px); display: flex; align-items: center; justify-content: center; background: #EFE9DE; background-image: repeating-linear-gradient(-45deg, rgba(169,142,99,0.06) 0, rgba(169,142,99,0.06) 1px, transparent 1px, transparent 14px); overflow: hidden">
-      <div style="position: absolute; bottom: 18px; right: 22px; font-family: monospace; font-size: 11px; color: #6B6A64">[ foto: difuzorius elegantiškame interjere, minkšta natūrali šviesa ]</div>
+    <section style="position: relative; min-height: clamp(480px, 62vw, 660px); display: flex; align-items: center; justify-content: center; background: #EFE9DE; overflow: hidden">
+      <img src="./images/hero-wide.webp" alt="FENNARY namų kvapo difuzorius šviesiame, ramiame interjere" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; display: block">
+      <div aria-hidden="true" style="position: absolute; inset: 0; background: rgba(239,233,222,0.08)"></div>
       <div style="position: relative; text-align: center; background: rgba(247,243,236,0.92); padding: clamp(36px, 5vw, 64px) clamp(28px, 6vw, 88px); max-width: 640px; margin: 48px 20px; display: flex; flex-direction: column; align-items: center; gap: 18px">
         <div style="color: #A98E63; font-size: 12px; letter-spacing: 0.32em; text-indent: 0.32em">NAMŲ KVAPŲ DIFUZORIAI</div>
         <h1 style="font-family: 'Cormorant Garamond', serif; font-weight: 500; font-size: clamp(34px, 4.6vw, 58px); line-height: 1.12; margin: 0; text-wrap: balance">Kvapas, kuriantis namus</h1>
@@ -65,8 +66,8 @@
         <p style="margin: 0; color: #6B6A64; font-size: 17px">Du kruopščiai sukurti aromatai jūsų erdvei</p>
         <a href="#kvapai" style="display: inline-block; margin-top: 10px; background: #A98E63; color: #F7F3EC; font-size: 13px; letter-spacing: 0.14em; text-indent: 0.14em; padding: 15px 38px; border-radius: 2px; text-decoration: none" style-hover="background: #94794F; text-decoration: none; color: #F7F3EC">Atrasti kvapus</a>
       </div>
-      <div style="position: relative; min-height: 460px; background: #EFE9DE; background-image: repeating-linear-gradient(-45deg, rgba(169,142,99,0.06) 0, rgba(169,142,99,0.06) 1px, transparent 1px, transparent 14px)">
-        <div style="position: absolute; bottom: 18px; right: 22px; font-family: monospace; font-size: 11px; color: #6B6A64">[ foto: difuzorius interjere ]</div>
+      <div style="position: relative; min-height: 460px; background: #EFE9DE; overflow: hidden">
+        <img src="./images/hero-wide.webp" alt="FENNARY namų kvapo difuzorius šviesiame, ramiame interjere" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 62% center; display: block">
       </div>
     </section>
   </sc-if>
@@ -76,8 +77,8 @@
 
     <!-- Room No. 1 -->
     <article style="background: #E7ECE8; border-top: 1px solid rgba(155,176,165,0.5); display: flex; flex-direction: column; align-items: center; gap: 0; padding: clamp(40px, 5vw, 72px) clamp(24px, 4vw, 64px) clamp(48px, 5vw, 80px)">
-      <div style="position: relative; width: 100%; max-width: 460px; aspect-ratio: 3 / 4; background: #F1F4F1; border: 1px solid rgba(155,176,165,0.55); background-image: repeating-linear-gradient(-45deg, rgba(155,176,165,0.1) 0, rgba(155,176,165,0.1) 1px, transparent 1px, transparent 12px); display: flex; align-items: center; justify-content: center">
-        <span style="font-family: monospace; font-size: 11px; color: #6B6A64; text-align: center; padding: 0 16px">[ foto: Room No. 1 difuzorius, šviesus fonas ]</span>
+      <div style="position: relative; width: 100%; max-width: 460px; aspect-ratio: 3 / 4; background: #F1F4F1; border: 1px solid rgba(155,176,165,0.55); overflow: hidden">
+        <img src="./images/room-no-1.webp" alt="FENNARY Room No. 1 nendrinis kvapų difuzorius su šalavijo šakele" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; object-position: center; display: block">
       </div>
       <div style="display: flex; flex-direction: column; align-items: center; gap: 12px; margin-top: 36px; text-align: center; max-width: 420px">
         <div style="color: #9BB0A5; font-size: 11px; letter-spacing: 0.28em; text-indent: 0.28em">FENNARY ROOM NO. 1</div>
@@ -94,8 +95,8 @@
 
     <!-- Room No. 2 -->
     <article style="background: #F0E5D8; border-top: 1px solid rgba(179,118,63,0.4); display: flex; flex-direction: column; align-items: center; gap: 0; padding: clamp(40px, 5vw, 72px) clamp(24px, 4vw, 64px) clamp(48px, 5vw, 80px)">
-      <div style="position: relative; width: 100%; max-width: 460px; aspect-ratio: 3 / 4; background: #F6EEE3; border: 1px solid rgba(179,118,63,0.45); background-image: repeating-linear-gradient(-45deg, rgba(179,118,63,0.08) 0, rgba(179,118,63,0.08) 1px, transparent 1px, transparent 12px); display: flex; align-items: center; justify-content: center">
-        <span style="font-family: monospace; font-size: 11px; color: #6B6A64; text-align: center; padding: 0 16px">[ foto: Room No. 2 difuzorius, šiltas fonas ]</span>
+      <div style="position: relative; width: 100%; max-width: 460px; aspect-ratio: 3 / 4; background: #F6EEE3; border: 1px solid rgba(179,118,63,0.45); overflow: hidden">
+        <img src="./images/room-no-2.webp" alt="FENNARY Room No. 2 nendrinis kvapų difuzorius su žvaigždiniu anyžiumi" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; object-position: center; display: block">
       </div>
       <div style="display: flex; flex-direction: column; align-items: center; gap: 12px; margin-top: 36px; text-align: center; max-width: 420px">
         <div style="color: #B3763F; font-size: 11px; letter-spacing: 0.28em; text-indent: 0.28em">FENNARY ROOM NO. 2</div>
@@ -149,8 +150,8 @@
 
   <!-- 6. Brand story -->
   <section id="apie" style="background: #EFE9DE; display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); align-items: stretch" data-screen-label="Apie FENNARY">
-    <div style="position: relative; min-height: 380px; background: #E9E2D4; background-image: repeating-linear-gradient(-45deg, rgba(169,142,99,0.07) 0, rgba(169,142,99,0.07) 1px, transparent 1px, transparent 13px)">
-      <div style="position: absolute; bottom: 16px; left: 20px; font-family: monospace; font-size: 11px; color: #6B6A64">[ foto: dirbtuvės / rankos, pilanti kvapo aliejų ]</div>
+    <div style="position: relative; min-height: 380px; background: #E9E2D4; overflow: hidden">
+      <img src="./images/brand-story.webp" alt="FENNARY difuzorius natūralių medžiagų ir švelnios dienos šviesos aplinkoje" loading="lazy" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 58% 58%; display: block">
     </div>
     <div style="display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 18px; padding: clamp(48px, 6vw, 96px) clamp(24px, 5vw, 88px)">
       <div style="color: #A98E63; font-size: 12px; letter-spacing: 0.32em">APIE FENNARY</div>
@@ -190,7 +191,7 @@
     <div style="height: 1px; background: rgba(247,243,236,0.15); margin: clamp(40px, 5vw, 64px) auto 36px; max-width: 1080px"></div>
 
     <div style="display: flex; flex-direction: column; align-items: center; gap: 24px; max-width: 1080px; margin: 0 auto">
-      <div style="font-family: 'Cormorant Garamond', serif; font-weight: 500; font-size: 18px; letter-spacing: 0.3em; text-indent: 0.3em">FENNARY</div>
+      <img src="./uploads/Fennary.png" alt="FENNARY" style="height: 20px; width: auto; display: block; filter: invert(1); mix-blend-mode: screen">
       <nav style="display: flex; flex-wrap: wrap; justify-content: center; gap: 14px 32px">
         <a href="#" style="color: rgba(247,243,236,0.75); font-size: 13px; letter-spacing: 0.04em; text-decoration: none" style-hover="color: #A98E63; text-decoration: underline; text-underline-offset: 4px">Privatumo politika</a>
         <a href="#" style="color: rgba(247,243,236,0.75); font-size: 13px; letter-spacing: 0.04em; text-decoration: none" style-hover="color: #A98E63; text-decoration: underline; text-underline-offset: 4px">Pirkimo taisyklės</a>

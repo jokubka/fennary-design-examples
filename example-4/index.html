@@ -53,7 +53,7 @@
     </sc-if>
 
     <!-- Centre: wordmark -->
-    <a href="#virsus" ref="{{ markRef }}" style="font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 500; font-size: 23px; letter-spacing: 0.38em; text-indent: 0.38em; text-decoration: none; color: #2C2723; transition: font-size 0.4s ease; text-align: center;">FENNARY</a>
+    <a href="#virsus" style="justify-self: center; display: inline-flex; align-items: center; line-height: 0; text-decoration: none;"><img ref="{{ markRef }}" src="./uploads/Fennary.png" alt="FENNARY" style="height: 23px; width: auto; display: block; mix-blend-mode: multiply; transition: height 0.4s ease;"></a>
 
     <!-- Right: search + cart -->
     <div style="display: flex; justify-content: flex-end; gap: 20px; align-items: center;">
@@ -82,10 +82,7 @@
         <a href="#apie" style="font-size: 13px; letter-spacing: 0.06em; color: #2C2723; text-decoration: underline; text-underline-offset: 5px; text-decoration-color: #C3B5A0; text-decoration-thickness: 1px; transition: text-decoration-color 0.3s ease;" style-hover="text-decoration-color: #2C2723; color: #2C2723;">Sužinoti daugiau</a>
       </div>
     </div>
-    <!-- Full-bleed lifestyle image placeholder -->
-    <div role="img" aria-label="Nuotrauka: FENNARY difuzorius šviesiame, ramiame interjere ant medinio stalelio" style="height: clamp(380px, 58vh, 620px); background: repeating-linear-gradient(45deg, #EDE5D6 0px, #EDE5D6 14px, #E5DAC9 14px, #E5DAC9 28px); display: flex; align-items: center; justify-content: center;">
-      <span style="font-family: ui-monospace, 'SF Mono', Menlo, monospace; font-size: 12px; color: #9d8e77; letter-spacing: 0.05em;">[ nuotrauka: difuzorius interjere — plati, rami kompozicija ]</span>
-    </div>
+    <div role="img" aria-label="Nuotrauka: FENNARY difuzorius šviesiame, ramiame interjere ant travertino stalelio" style="height: clamp(380px, 58vh, 620px); background: #E5DAC9 url('./images/hero-lifestyle.webp') 66% center / cover no-repeat;"></div>
   </section>
 
   <!-- ================================================================
@@ -116,9 +113,7 @@
         <!-- Product unit · Room No. 1 · accent: sage #8C9A82 -->
         <article data-reveal style="display: flex; flex-direction: column;">
           <a href="#" aria-label="Room No. 1 — produkto puslapis" style="display: block; text-decoration: none; position: relative; overflow: hidden;">
-            <div role="img" aria-label="Nuotrauka: Room No. 1 difuzorius — gintarinio stiklo buteliukas su natūraliomis lazdelėmis" style="aspect-ratio: 4 / 5; background: repeating-linear-gradient(45deg, #EEE8DC 0px, #EEE8DC 14px, #E7DECD 14px, #E7DECD 28px); display: flex; align-items: center; justify-content: center; transition: transform 0.4s ease;" style-hover="transform: scale(1.015);">
-              <span style="font-family: ui-monospace, 'SF Mono', Menlo, monospace; font-size: 12px; color: #9d8e77; letter-spacing: 0.05em;">[ produkto nuotrauka: Room No. 1 ]</span>
-            </div>
+            <div role="img" aria-label="Nuotrauka: Room No. 1 difuzorius — skaidraus stiklo buteliukas su natūraliomis lazdelėmis ir šalavijo šakele" style="aspect-ratio: 4 / 5; background: #E7DECD url('./images/room-no-1.webp') center center / cover no-repeat; transition: transform 0.4s ease;" style-hover="transform: scale(1.015);"></div>
             <span aria-hidden="true" style="position: absolute; top: 20px; left: 24px; font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-size: 22px; color: #8C9A82;">No. 1</span>
           </a>
           <div style="padding-top: 28px; display: flex; flex-direction: column; gap: 12px; align-items: flex-start;">
@@ -134,9 +129,7 @@
         <!-- Product unit · Room No. 2 · accent: amber #B98A5E -->
         <article data-reveal style="display: flex; flex-direction: column;">
           <a href="#" aria-label="Room No. 2 — produkto puslapis" style="display: block; text-decoration: none; position: relative; overflow: hidden;">
-            <div role="img" aria-label="Nuotrauka: Room No. 2 difuzorius — tamsaus stiklo buteliukas šiltoje, jaukioje aplinkoje" style="aspect-ratio: 4 / 5; background: repeating-linear-gradient(45deg, #EEE8DC 0px, #EEE8DC 14px, #E7DECD 14px, #E7DECD 28px); display: flex; align-items: center; justify-content: center; transition: transform 0.4s ease;" style-hover="transform: scale(1.015);">
-              <span style="font-family: ui-monospace, 'SF Mono', Menlo, monospace; font-size: 12px; color: #9d8e77; letter-spacing: 0.05em;">[ produkto nuotrauka: Room No. 2 ]</span>
-            </div>
+            <div role="img" aria-label="Nuotrauka: Room No. 2 difuzorius — skaidraus stiklo buteliukas šiltoje aplinkoje su žvaigždiniu anyžiumi" style="aspect-ratio: 4 / 5; background: #E7DECD url('./images/room-no-2.webp') center center / cover no-repeat; transition: transform 0.4s ease;" style-hover="transform: scale(1.015);"></div>
             <span aria-hidden="true" style="position: absolute; top: 20px; left: 24px; font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-size: 22px; color: #B98A5E;">No. 2</span>
           </a>
           <div style="padding-top: 28px; display: flex; flex-direction: column; gap: 12px; align-items: flex-start;">
@@ -233,9 +226,7 @@
        6. LIFESTYLE  (WooCommerce: template-parts/home/lifestyle.php)
        ================================================================ -->
   <section aria-label="Gyvenimo būdo nuotrauka">
-    <div role="img" aria-label="Nuotrauka: plati, atmosferinė namų erdvė su FENNARY difuzoriumi — švelni natūrali šviesa" style="height: clamp(320px, 52vh, 560px); background: repeating-linear-gradient(45deg, #EDE5D6 0px, #EDE5D6 14px, #E5DAC9 14px, #E5DAC9 28px); display: flex; align-items: center; justify-content: center;">
-      <span style="font-family: ui-monospace, 'SF Mono', Menlo, monospace; font-size: 12px; color: #9d8e77; letter-spacing: 0.05em;">[ nuotrauka: atmosferinis interjeras su difuzoriumi ]</span>
-    </div>
+    <div role="img" aria-label="Nuotrauka: plati, atmosferinė namų erdvė su FENNARY difuzoriumi — švelni natūrali šviesa" style="height: clamp(320px, 52vh, 560px); background: #E5DAC9 url('./images/lifestyle-wide.webp') 60% center / cover no-repeat;"></div>
     <p data-reveal style="margin: 0; text-align: center; font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-size: clamp(18px, 2.2vw, 23px); color: rgba(44,39,35,0.75); padding: clamp(32px, 5vh, 56px) 24px;">Svetainei, miegamajam, vonios kambariui ar darbo erdvei.</p>
   </section>
 
@@ -264,7 +255,7 @@
      ================================================================ -->
 <footer id="kontaktai" data-screen-label="Footer" style="background: #2C2723; color: #EFE9DF; padding: clamp(56px, 8vh, 88px) clamp(20px, 4vw, 48px) 40px;">
   <div style="max-width: 1180px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 40px;">
-    <p style="margin: 0; font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 500; font-size: 20px; letter-spacing: 0.38em; text-indent: 0.38em;">FENNARY</p>
+    <img src="./uploads/Fennary.png" alt="FENNARY" style="height: 20px; width: auto; display: block; filter: invert(1); mix-blend-mode: screen;">
     <nav aria-label="Puslapio nuorodos" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 14px clamp(20px, 3vw, 40px);">
       <a href="#apie" style="font-size: 13px; color: rgba(239,233,223,0.8); text-decoration: none; border-bottom: 1px solid transparent; padding-bottom: 3px; transition: border-color 0.3s ease, color 0.3s ease;" style-hover="color: #EFE9DF; border-bottom: 1px solid #C3B5A0;">Apie mus</a>
       <a href="#" style="font-size: 13px; color: rgba(239,233,223,0.8); text-decoration: none; border-bottom: 1px solid transparent; padding-bottom: 3px; transition: border-color 0.3s ease, color 0.3s ease;" style-hover="color: #EFE9DF; border-bottom: 1px solid #C3B5A0;">Pristatymas ir grąžinimas</a>
@@ -309,7 +300,7 @@ class Component extends DCLogic {
       h.style.paddingTop = on ? '11px' : '22px';
       h.style.paddingBottom = on ? '11px' : '22px';
       h.style.boxShadow = on ? '0 1px 0 rgba(195,181,160,0.9)' : '0 1px 0 rgba(195,181,160,0.45)';
-      if (w) w.style.fontSize = on ? '19px' : '23px';
+      if (w) w.style.height = on ? '19px' : '23px';
     };
     window.addEventListener('scroll', this._onScroll, { passive: true });
 

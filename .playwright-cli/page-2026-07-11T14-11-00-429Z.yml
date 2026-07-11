@@ -1,0 +1,118 @@
+- generic [ref=e4]:
+  - generic [ref=e5]: Nemokamas pristatymas nuo 49 €
+  - banner [ref=e6]:
+    - navigation [ref=e7]:
+      - link "Kvapai" [ref=e8] [cursor=pointer]:
+        - /url: "#kvapai"
+      - link "Apie mus" [ref=e9] [cursor=pointer]:
+        - /url: "#apie"
+    - link "FENNARY — pradžia" [ref=e10] [cursor=pointer]:
+      - /url: "#"
+      - img "FENNARY" [ref=e11]
+    - generic [ref=e12]:
+      - link "Paieška" [ref=e13] [cursor=pointer]:
+        - /url: "#"
+        - img [ref=e14]
+      - link "Krepšelis" [ref=e17] [cursor=pointer]:
+        - /url: "#"
+        - img [ref=e18]
+  - generic [ref=e21]:
+    - img "FENNARY namų kvapo difuzorius šviesiame, ramiame interjere" [ref=e22]
+    - generic [ref=e24]:
+      - generic [ref=e25]: NAMŲ KVAPŲ DIFUZORIAI
+      - heading "Kvapas, kuriantis namus" [level=1] [ref=e26]
+      - paragraph [ref=e27]: Du kruopščiai sukurti aromatai jūsų erdvei
+      - link "Atrasti kvapus" [ref=e28] [cursor=pointer]:
+        - /url: "#kvapai"
+  - generic [ref=e29]:
+    - article [ref=e30]:
+      - img "FENNARY Room No. 1 nendrinis kvapų difuzorius su šalavijo šakele" [ref=e32]
+      - generic [ref=e33]:
+        - generic [ref=e34]: FENNARY ROOM NO. 1
+        - heading "Fresh & Pure" [level=2] [ref=e35]
+        - paragraph [ref=e37]: Bergamotė · baltasis šalavijas · jazminas · jūros druska
+        - paragraph [ref=e38]: Gaivus, švarus ir lengvai elegantiškas namų kvapas.
+        - generic [ref=e39]:
+          - link "PLAČIAU" [ref=e40] [cursor=pointer]:
+            - /url: "#"
+          - generic [ref=e41]: 39 €
+    - article [ref=e42]:
+      - img "FENNARY Room No. 2 nendrinis kvapų difuzorius su žvaigždiniu anyžiumi" [ref=e44]
+      - generic [ref=e45]:
+        - generic [ref=e46]: FENNARY ROOM NO. 2
+        - heading "Aromatic Oriental" [level=2] [ref=e47]
+        - paragraph [ref=e49]: Žvaigždinis anyžius · levanda · vanilė · tonka pupelės
+        - paragraph [ref=e50]: Aromatingas ir rytietiškai šiltas namų kvapas.
+        - generic [ref=e51]:
+          - link "PLAČIAU" [ref=e52] [cursor=pointer]:
+            - /url: "#"
+          - generic [ref=e53]: 39 €
+  - generic [ref=e54]:
+    - generic [ref=e55]:
+      - generic [ref=e56]: SUDĖTIS
+      - heading "Kvapo piramidė" [level=2] [ref=e57]
+    - generic [ref=e58]:
+      - generic [ref=e59]:
+        - generic [ref=e60]: FENNARY ROOM NO. 1
+        - heading "Fresh & Pure" [level=3] [ref=e61]
+        - generic [ref=e63]:
+          - generic [ref=e64]: VIRŠUTINĖS NATOS
+          - generic [ref=e65]: bergamotė, baltasis šalavijas
+        - generic [ref=e67]:
+          - generic [ref=e68]: ŠIRDIES NATOS
+          - generic [ref=e69]: jazminas, rožė, jūros druska
+        - generic [ref=e71]:
+          - generic [ref=e72]: BAZINĖS NATOS
+          - generic [ref=e73]: pušis, muskusas, ambra
+      - generic [ref=e74]:
+        - generic [ref=e75]: FENNARY ROOM NO. 2
+        - heading "Aromatic Oriental" [level=3] [ref=e76]
+        - generic [ref=e78]:
+          - generic [ref=e79]: VIRŠUTINĖS NATOS
+          - generic [ref=e80]: žvaigždinis anyžius, levanda
+        - generic [ref=e82]:
+          - generic [ref=e83]: ŠIRDIES NATOS
+          - generic [ref=e84]: medvilnė, kipriolė, vanilė
+        - generic [ref=e86]:
+          - generic [ref=e87]: BAZINĖS NATOS
+          - generic [ref=e88]: tonka pupelės, baltasis muskusas, rytietiškas akordas
+  - generic [ref=e89]:
+    - img "FENNARY difuzorius natūralių medžiagų ir švelnios dienos šviesos aplinkoje" [ref=e91]
+    - generic [ref=e92]:
+      - generic [ref=e93]: APIE FENNARY
+      - paragraph [ref=e94]: Kuriame tik du kvapus — ir tai sąmoningas pasirinkimas. Kokybė vietoj kiekybės. Kiekvienas FENNARY aromatas tobulinamas tol, kol tampa vertas jūsų namų.
+      - link "MŪSŲ ISTORIJA" [ref=e95] [cursor=pointer]:
+        - /url: "#"
+  - generic [ref=e97]:
+    - generic [ref=e98]:
+      - img [ref=e99]
+      - generic [ref=e102]: Pristatymas į paštomatus 1–3 d.d.
+    - generic [ref=e103]:
+      - img [ref=e104]
+      - generic [ref=e107]: Aukščiausios kokybės kvapų aliejai
+    - generic [ref=e108]:
+      - img [ref=e109]
+      - generic [ref=e111]: 14 dienų grąžinimo garantija
+  - contentinfo [ref=e112]:
+    - generic [ref=e113]:
+      - heading "Prenumeruokite naujienas" [level=2] [ref=e114]
+      - generic [ref=e115]:
+        - textbox "El. pašto adresas" [ref=e116]
+        - button "Užsisakyti" [ref=e117] [cursor=pointer]
+    - generic [ref=e119]:
+      - img "FENNARY" [ref=e120]
+      - navigation [ref=e121]:
+        - link "Privatumo politika" [ref=e122] [cursor=pointer]:
+          - /url: "#"
+        - link "Pirkimo taisyklės" [ref=e123] [cursor=pointer]:
+          - /url: "#"
+        - link "Pristatymas ir grąžinimas" [ref=e124] [cursor=pointer]:
+          - /url: "#"
+        - link "Kontaktai" [ref=e125] [cursor=pointer]:
+          - /url: "#"
+      - generic [ref=e126]:
+        - link "INSTAGRAM" [ref=e127] [cursor=pointer]:
+          - /url: "#"
+        - link "FACEBOOK" [ref=e128] [cursor=pointer]:
+          - /url: "#"
+      - generic [ref=e129]: FENNARY © 2026

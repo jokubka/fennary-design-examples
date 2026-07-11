@@ -55,7 +55,7 @@
       </div>
     </div>
     <div style="position: relative; min-height: 640px; border-left: 1px solid #ECECE8">
-      <x-import component-from-global-scope="image-slot" from="./image-slot.js" id="hero" shape="rect" placeholder="Difuzoriaus nuotrauka interjere" hint-size="100%,640px" style="position:absolute; inset:0"></x-import>
+      <div role="img" aria-label="Difuzoriaus nuotrauka interjere" style="position:absolute; inset:0; background-color:#E3E5DE; background-image:url('./images/hero-reed-diffuser.webp'); background-size:cover; background-position:center;"></div>
     </div>
   </section>
 
@@ -69,7 +69,7 @@
       <sc-for list="{{ products }}" as="p" hint-placeholder-count="2">
         <div style="border: 1px solid #ECECE8; display: flex; flex-direction: column">
           <div style="position: relative; height: 520px; border-bottom: 1px solid #ECECE8">
-            <x-import component-from-global-scope="image-slot" from="./image-slot.js" id="{{ p.slotId }}" shape="rect" placeholder="{{ p.placeholder }}" hint-size="100%,520px" style="position:absolute; inset:0"></x-import>
+            <div role="img" aria-label="{{ p.placeholder }}" style="position:absolute; inset:0; background-color:#E3E5DE; background-image:url('./{{ p.src }}'); background-size:cover; background-position:center;"></div>
           </div>
           <div style="padding: 34px 36px 40px; display: flex; flex-direction: column; gap: 14px">
             <div style="display: flex; justify-content: space-between; align-items: baseline">
@@ -158,6 +158,7 @@ class Component extends DCLogic {
           number: "Nr. 01",
           name: "Figa ir kedras",
           notes: "Šiltas, medienos tonų kvapas ramiai erdvei. Pavadinimą ir aprašymą pakeisime pagal jūsų tekstą.",
+          src: "images/product-fig-cedar.webp",
           placeholder: "1 produkto nuotrauka"
         },
         {
@@ -165,6 +166,7 @@ class Component extends DCLogic {
           number: "Nr. 02",
           name: "Ambra ir šalavijas",
           notes: "Gaivus, žolynų tonų kvapas šviesiems namams. Pavadinimą ir aprašymą pakeisime pagal jūsų tekstą.",
+          src: "images/product-amber-sage.webp",
           placeholder: "2 produkto nuotrauka"
         }
       ],
